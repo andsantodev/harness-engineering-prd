@@ -1,6 +1,6 @@
 # Como gerar o AGENTS.md canônico
 
-O AGENTS.md é o arquivo de instrução raiz, agnóstico de plataforma — a fonte da verdade
+O AGENTS.md é o arquivo de instrução raiz, agnóstico de agente de codificação — a fonte da verdade
 para a qual todo o resto (CLAUDE.md, `.cursor/rules`, etc.) aponta de volta. Ele NÃO deve
 virar um manual completo do projeto: seguindo o curso, mantenha-o curto — roteamento e
 invariantes, não documentação de arquitetura.
@@ -43,6 +43,10 @@ escolhido]
 
 ## Limites (o que NÃO fazer sem aprovação explícita)
 - Nunca commitar `.env`, chaves de API, tokens ou outras credenciais
+[Se o backend for Supabase (ou outro com RLS): adicionar também "Habilitar RLS em toda
+tabela nova; nunca expor a `service_role` key no frontend/client-side; toda política de
+acesso deve ser explícita — nunca 'permitir tudo' como atalho." Sem backend com RLS,
+omitir este bloco.]
 [demais limites específicos do projeto — ex.: não alterar schema de banco fora do MCP
 combinado acima, não trocar dependências de produção, não fazer push direto — ajustar
 conforme o projeto]
@@ -61,7 +65,7 @@ conforme o projeto]
   não houver, sugira o comando padrão do stack informado e marque como a confirmar.
 - A linha de "Referência de design" só existe quando a entrevista trouxe algo explícito
   (bloco fixo, pergunta de design) — nunca por padrão. O mesmo vale para o bullet do
-  MCP em "Como trabalhar aqui": só aparece quando o bloco fixo revelar backend real com
-  MCP conectado.
+  MCP em "Como trabalhar aqui" e para o bloco de RLS em "Limites": só aparecem quando o
+  bloco fixo revelar backend real com MCP/RLS.
 - Mantenha o arquivo final abaixo de ~100 linhas. Se o projeto tiver muita informação
   específica, ela vai para `/docs` (referenciado, não copiado para dentro do AGENTS.md).

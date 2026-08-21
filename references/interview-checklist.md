@@ -1,52 +1,36 @@
 # Entrevista de alinhamento (Etapa 1)
 
-Duas partes, sempre nesta ordem: bloco fixo primeiro, sabatina depois. Nunca inverta —
-a pergunta de intenção comercial (bloco fixo) é o gatilho condicional do Pilar 1, e o
-Pilar 3 depende do stack já levantado no bloco fixo.
+Duas partes, sempre nesta ordem: sabatina primeiro, bloco fixo depois. A sabatina
+debate a ideia até você estar convencido de que o escopo é sólido; o bloco fixo só
+formaliza o que ainda não apareceu nesse debate (nome definitivo, ferramenta de
+codificação, comandos). Nunca inverta.
 
-## Parte A — Bloco fixo
+## Parte 1 — Sabatina adaptativa (5 pilares)
 
-Apresente as perguntas abaixo de uma vez, como uma lista única — nunca uma por vez, e
-nunca em pares. Pule qualquer pergunta cuja resposta já esteja clara na descrição
-original do projeto.
-
-1. Nome do projeto (ou provisório)
-2. Greenfield (do zero) ou já existe repositório/código em andamento?
-3. Este projeto é só teste/portfólio pessoal, ou você pretende torná-lo produto real ou
-   monetizado? (Define se o Pilar 1, na Parte B, cobra validação de mercado/monetização
-   ou não.)
-4. Linguagem/framework já definidos, ou quer sugestão?
-5. Frontend, backend, banco de dados, hospedagem — o que já está decidido?
-6. Existe alguma referência visual/orientação de design já definida para este projeto?
-   Pode ser: um `DESIGN.md` existente, print, link do Figma, Google Stitch, outro style
-   guide, um MCP já conectado (ex.: Figma, Google Stitch), ou uma skill nomeada que você
-   já usa/quer usar (ex.: `frontend-design`). Se não houver nada definido, siga sem
-   forçar nenhuma diretriz de design.
-7. Como você vai saber que uma feature está pronta? (testes automatizados, checklist
-   manual, os dois)
-8. Já existe algum comando de build/test/lint no projeto, ou isso ainda vai ser
-   definido do zero?
-9. Qual(is) ferramenta(s) de codificação com IA você vai usar nesse projeto? (Claude
-   Code, OpenCode, Cursor, outro)
-10. Tem algum plugin ou framework de desenvolvimento instalado globalmente nessa
-    ferramenta (ex.: um plugin "always-on" no OpenCode)? Se sim, qual? Isso importa
-    porque um plugin global pode competir com o fluxo do Harness — ver aviso na Etapa 3.
-
-## Parte B — Sabatina adaptativa (5 pilares)
+### Postura
+Mantenha uma postura rigorosa e analítica ao longo da sabatina — seu objetivo não é
+aprovar a ideia rápido, é submetê-la a um teste de estresse real antes de qualquer
+documento ser gerado. Não aceite resposta superficial ou defensiva só para manter a
+conversa fluindo: aponte a falha e peça profundidade. Isso não é hostilidade — é o
+valor do processo. Só suavize isso ao atingir o teto de rodadas abaixo, nunca por
+conta própria.
 
 Sem lista fixa de perguntas aqui — ataque o pilar com a lacuna mais grave a cada
-rodada, até os 5 estarem cobertos. Nunca repita o que o bloco fixo já revelou.
+rodada, até os 5 estarem cobertos.
 
 ### Os 5 pilares
-1. **Problema e Motivação** — a ideia resolve uma fricção real? Se a resposta 3 (bloco
-   fixo) indicar projeto de teste/portfólio, NÃO cobre validação de mercado/modelo de
-   negócio — só que a fricção é genuína. Só cobra monetização se a resposta 3 indicar
-   intenção comercial real.
+1. **Problema e Motivação** — comece perguntando se o projeto é só teste/portfólio
+   pessoal ou se o usuário pretende torná-lo produto real/monetizado; isso decide o
+   resto do pilar. Se for teste/portfólio, valide só que a ideia resolve uma fricção
+   real, sem cobrar validação de mercado ou modelo de negócio. Se houver intenção
+   comercial real, aprofunde: a ideia resolve uma dor real e monetizável, ou é solução
+   em busca de problema?
 2. **Lógica de Negócio e UX** — fluxo de entrada, ação principal do usuário, o que
    garante uso contínuo. Inclua aqui a pergunta de como o usuário vai medir sucesso do
    projeto como um todo.
-3. **Viabilidade Técnica** — a arquitetura faz sentido pro stack já levantado no bloco
-   fixo (resposta 4/5)? Como o frontend consome dados? Gargalos em integrações de API
+3. **Viabilidade Técnica** — a arquitetura faz sentido? Se a stack ainda não estiver
+   clara, pergunte o suficiente aqui para avaliar viabilidade (o bloco fixo formaliza
+   os detalhes depois). Como o frontend consome dados? Gargalos em integrações de API
    ou automações em background? Inclua aqui o levantamento de integrações obrigatórias.
 4. **Casos Limite** — o que quebra se o usuário agir de forma inesperada, um webhook
    falhar, ou dados vierem incompletos?
@@ -68,10 +52,39 @@ rodada, até os 5 estarem cobertos. Nunca repita o que o bloco fixo já revelou.
 Máximo de ~3 idas e voltas por pilar. Se ainda sobrar lacuna depois disso, NÃO trave o
 fluxo — registre o que ficou em aberto como risco/`[a definir]` no PRD (Riscos e
 premissas, ou Perguntas em aberto) e siga para o próximo pilar. Existe para não gastar
-contexto/créditos à toa numa sabatina longa demais para um projeto pessoal pequeno.
+contexto/créditos à toa numa sabatina longa demais para um projeto pessoal pequeno. O
+teto limita quanto tempo insiste, não quão firme é a pergunta enquanto insiste — a
+postura rigorosa vale até o último round.
 
-### Regra de ouro
-Só avance para a Etapa 2 (gerar o PRD) depois que os 5 pilares estiverem cobertos — por
-validação completa ou por saída via teto com lacunas registradas. Isto estende o gate de
-aprovação que a skill já usa (nada é gerado sem aprovação) também para a fase de
-descoberta, não só para edição de artefato já criado.
+## Parte 2 — Bloco fixo (finalização)
+
+Só começa depois que a Parte 1 cobrir os 5 pilares. Apresente as perguntas abaixo de
+uma vez, como uma lista única — nunca uma por vez, nunca em pares. Pule qualquer
+pergunta cuja resposta já tenha saído durante a sabatina ou da descrição original do
+projeto.
+
+1. Nome do projeto (ou provisório)
+2. Greenfield (do zero) ou já existe repositório/código em andamento?
+3. Linguagem/framework já definidos, ou quer sugestão?
+4. Frontend, backend, banco de dados, hospedagem — o que já está decidido?
+5. Existe alguma referência visual/orientação de design já definida para este projeto?
+   Pode ser: um `DESIGN.md` existente, print, link do Figma, Google Stitch, outro style
+   guide, um MCP já conectado (ex.: Figma, Google Stitch), ou uma skill nomeada que você
+   já usa/quer usar (ex.: `frontend-design`). Se não houver nada definido, siga sem
+   forçar nenhuma diretriz de design.
+6. Como você vai saber que uma feature está pronta? (testes automatizados, checklist
+   manual, os dois)
+7. Já existe algum comando de build/test/lint no projeto, ou isso ainda vai ser
+   definido do zero?
+8. Qual(is) ferramenta(s) de codificação com IA você vai usar nesse projeto? (Claude
+   Code, OpenCode, Cursor, outro)
+9. Tem algum plugin ou framework de desenvolvimento instalado globalmente nessa
+   ferramenta (ex.: um plugin "always-on" no OpenCode)? Se sim, qual? Isso importa
+   porque um plugin global pode competir com o fluxo do Harness — ver aviso na Etapa 3.
+
+## Regra de ouro
+Só avance para o Bloco fixo (Parte 2) depois que a sabatina declarar os 5 pilares
+cobertos — por validação completa ou por saída via teto com lacunas registradas. Só
+avance para a Etapa 2 (gerar o PRD) depois que o Bloco fixo estiver respondido. Isto
+estende o gate de aprovação que a skill já usa (nada é gerado sem aprovação) também
+para a fase de descoberta, não só para edição de artefato já criado.

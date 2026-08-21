@@ -1,9 +1,20 @@
 # Changelog
 
-## v5 (current)
+## v7 (current)
+
+Changes since v5 (intermediate v6 notes aren't tracked):
+
+- **Interview order reversed.** The adaptive 5-pillar sabatina now runs first (Part 1); the fixed checklist moved to a closing pass (Part 2) that only asks what the sabatina didn't already surface. Previously the fixed checklist ran first.
+- The sabatina's rigorous, stress-testing posture is now explicit and holds for the whole session, not just the early rounds.
+- `AGENTS.md` generation adds a **Row Level Security (RLS) guardrail** for Supabase (or other RLS-capable) backends.
+- `feature_list.json` guidance adds two rules: `verification_command` must be a self-terminating pass/fail command (no long-running dev servers or watch mode), and cross-cutting "transversal" features (design system, shared layout, shared API contracts) should be positioned early in the array, right after the walking skeleton.
+- PRD template section "Usuários e personas" renamed to "Usuários e jornada", now expected to include the primary user flow pulled from the sabatina.
+- Terminology cleanup: "IDE" → "coding agent" throughout, for consistency.
+- Removed the "planned SDD support" note that used to sit at the end of `SKILL.md`.
+
+## v5
 
 - Added the adaptive 5-pillar interrogation (Interview Part B) on top of the original fixed-checklist block, to stress-test the project idea before generating the PRD.
-- ⚠️ Not yet validated across real sessions — see the Validation status table in the README.
 
 ## Earlier iterations
 

@@ -2,7 +2,7 @@
 
 A Claude Skill that turns a software project description into a full **PRD** (Product Requirements Document) and a complete **"Harness"** document pack — `AGENTS.md`, `feature_list.json`, `progress.md`, `session-handoff.md` — the instruction and state scaffolding an AI coding agent (Claude Code, OpenCode, Cursor, and others) needs to work reliably across multiple sessions without losing context.
 
-Based on the patterns from the *Learn Harness Engineering* course ([walkinglabs/learn-harness-engineering](https://github.com/walkinglabs/learn-harness-engineering)). The alignment interview combines a fixed block of direct questions (stack, tooling, design) with an adaptive 5-pillar interrogation that stress-tests the idea before any document is generated.
+Based on the patterns from the *Learn Harness Engineering* course ([walkinglabs/learn-harness-engineering](https://github.com/walkinglabs/learn-harness-engineering)). The alignment interview leads with an adaptive 5-pillar interrogation that stress-tests the idea, then closes with a fixed block of direct questions (stack, tooling, design) covering whatever wasn't already surfaced.
 
 🇧🇷 Prefer Portuguese? See [README.pt-BR.md](README.pt-BR.md).
 
@@ -12,24 +12,11 @@ Based on the patterns from the *Learn Harness Engineering* course ([walkinglabs/
 
 Three steps, always in this order. No document is generated before the previous gate is passed.
 
-1. **Interview** — a fixed checklist block, followed by an adaptive 5-pillar interrogation.
+1. **Interview** — an adaptive 5-pillar interrogation that stress-tests the idea first, then a fixed checklist that closes out anything not already covered.
 2. **PRD** — generated, presented, and held for your explicit approval. Nothing else is generated until you approve it.
 3. **Harness package** — only after approval: `docs/PRD.md`, `AGENTS.md`, `feature_list.json`, `progress.md`, `session-handoff.md`, verification/bootstrap notes, plus a native adapter file for whichever coding agent(s) you're using (`CLAUDE.md` for Claude Code, `.cursor/rules/*.mdc` for Cursor, native support for OpenCode).
 
 This skill covers **discovery and documentation only** — it doesn't write application code or run scripts. It prepares the ground for a coding agent (or a harness-creator flow) to take over.
-
-## Validation status
-
-Current version: **v5**. Tested end-to-end on real projects (including MedAgenda and Nexus Agency) via **OpenCode**.
-
-| Area | Status |
-|---|---|
-| PRD generation, walking-skeleton first feature, global-plugin-conflict warning | ✅ Validated (OpenCode) |
-| Supabase-via-MCP flow, integration with the official `frontend-design` skill | ✅ Validated |
-| Adaptive 5-pillar interview (Part B) | ✅ Validated |
-| Claude Code / Cursor adapter files | ⚠️ Generated correctly, but not yet tested end-to-end on those platforms (only OpenCode has been run start-to-finish) |
-
-Shared here transparently rather than hidden. If you try this on Claude Code or Cursor, feedback and issue reports are welcome.
 
 ## Installation
 
@@ -202,6 +189,3 @@ Illustrative excerpt only (constructed for this README, not pulled from a real t
 
 [MIT](LICENSE).
 
-## Out of scope (planned)
-
-Generating SDD (spec-kit) documents from the same project description isn't implemented in this version — planned for a future release.

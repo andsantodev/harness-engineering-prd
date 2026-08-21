@@ -5,7 +5,7 @@ suficiente para preencher com segurança, escreva `[a definir]` — nunca invent
 prazos ou decisões técnicas que o usuário não deu.
 
 **Idioma e destino:** ao contrário dos documentos "canônicos" da Etapa 3 (AGENTS.md,
-feature_list.json, adaptadores de IDE), que ficam em inglês, o PRD é escrito no mesmo
+feature_list.json, adaptadores de agente), que ficam em inglês, o PRD é escrito no mesmo
 idioma da conversa — é documentação de produto para humanos, não instrução operacional
 para o agente de codificação. Depois de aprovado, ele é entregue também como arquivo
 `docs/PRD.md`, junto com o resto do pacote Harness da Etapa 3.
@@ -23,8 +23,10 @@ Lista objetiva do que o projeto precisa alcançar.
 O que fica explicitamente fora de escopo nesta fase — tão importante quanto os
 objetivos.
 
-## 5. Usuários e personas
-Quem usa isso e em que contexto.
+## 5. Usuários e jornada
+Quem usa isso e em que contexto. Inclua o fluxo principal em alto nível — como o
+usuário entra, qual é a ação central que ele repete, o que faz ele voltar. Puxe da
+sabatina (Pilar 2, Lógica de Negócio e UX) em vez de reinventar.
 
 ## 6. Requisitos funcionais
 O que o sistema precisa fazer, numerado, um item por linha. Esta lista vira a base do
