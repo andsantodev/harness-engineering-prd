@@ -100,7 +100,7 @@ retrofitadas, trabalho duplicado.
   página/produto individual que vá consumi-la.
 
 ### Feature final — Inspeção de release (sempre a última)
-Toda `feature_list.json` termina com uma feature de inspeção de release, com
+Toda `docs/feature_list.json` termina com uma feature de inspeção de release, com
 `depends_on` em **todas** as outras e status inicial `todo`. Ela não implementa produto:
 audita o que foi construído. A posição é sempre a última — não é uma feature transversal,
 então a regra de "transversais cedo" não se aplica a ela e continua valendo para as

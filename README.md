@@ -1,8 +1,8 @@
 # Harness Engineering PRD
 
-A Claude Skill that turns a software project description into a full **PRD** (Product Requirements Document) and a complete **"Harness"** document pack — `AGENTS.md`, `feature_list.json`, `progress.md`, `session-handoff.md` — the instruction and state scaffolding an AI coding agent (Claude Code, OpenCode, Cursor, and others) needs to work reliably across multiple sessions without losing context.
+A Claude Skill that turns a software project description into a full **PRD** (Product Requirements Document) and a complete **"Harness"** document pack — a root `AGENTS.md` plus `docs/` (`PRD.md`, `feature_list.json`, `progress.md`, `session-handoff.md`, verification notes, and stack-specific engineering rules) — the instruction and state scaffolding an AI coding agent (Claude Code, OpenCode, Cursor, and others) needs to work reliably across multiple sessions without losing context. The primary focus is React/Next.js, but the skill stays stack-agnostic.
 
-Based on the patterns from the *Learn Harness Engineering* course ([walkinglabs/learn-harness-engineering](https://github.com/walkinglabs/learn-harness-engineering)). The alignment interview leads with an adaptive 5-pillar interrogation that stress-tests the idea, then closes with a fixed block of direct questions (stack, tooling, design) covering whatever wasn't already surfaced.
+Based on the patterns from the *Learn Harness Engineering* course ([walkinglabs/learn-harness-engineering](https://github.com/walkinglabs/learn-harness-engineering)). The alignment interview leads with an adaptive 5-pillar interrogation that stress-tests the idea, then closes with a fixed block of direct questions (stack, tooling, design) covering whatever wasn't already surfaced. Technical-choice questions come with a recommended answer; product and business questions don't.
 
 🇧🇷 Prefer Portuguese? See [README.pt-BR.md](README.pt-BR.md).
 
@@ -14,9 +14,55 @@ Three steps, always in this order. No document is generated before the previous 
 
 1. **Interview** — an adaptive 5-pillar interrogation that stress-tests the idea first, then a fixed checklist that closes out anything not already covered.
 2. **PRD** — generated, presented, and held for your explicit approval. Nothing else is generated until you approve it.
-3. **Harness package** — only after approval: `docs/PRD.md`, `AGENTS.md`, `feature_list.json`, `progress.md`, `session-handoff.md`, verification/bootstrap notes, plus a native adapter file for whichever coding agent(s) you're using (`CLAUDE.md` for Claude Code, `.cursor/rules/*.mdc` for Cursor, native support for OpenCode).
+3. **Harness package** — only after approval: root `AGENTS.md`, `docs/PRD.md`, `docs/feature_list.json`, `docs/progress.md`, `docs/session-handoff.md`, `docs/verification-notes.md`, root `init.sh`, optional `docs/engineering-rules.md` for the detected stack, plus a native adapter file for whichever coding agent(s) you're using (`CLAUDE.md` for Claude Code, `.cursor/rules/*.mdc` for Cursor, native support for OpenCode).
+
+**Already have a PRD?** The skill has a second entry mode: it reads your PRD without rewriting it, compares it with the template and the fixed interview block, asks only what's missing for the Harness, records gaps as `[a definir]`, and warns when the requirements aren't verifiable. The PRD approval gate and the Harness stage stay the same; the 5-pillar interview is what gets replaced. If you already have both a PRD and a Harness, the skill is not the right tool.
+
+**What the Harness includes:**
+- A short **Definition of Done** with automatic checks (typecheck, lint, tests; production build at the end) and judgment calls (no new dependency without approval, no dead code, simplest solution).
+- A **folder structure** heuristic: by responsibility up to ~15 screens, by feature above that.
+- A final **release inspection** feature, always last in `docs/feature_list.json`: production build, no secrets in code or public env vars, `.env.example`, 404 route, basic accessibility, dependency audit, and a security review.
+- **Stack rules** loaded only when they match: Next.js, React + Vite, Supabase Auth and n8n. Details go to `docs/engineering-rules.md`; the generated `AGENTS.md` only points to it.
+- A **manual setup step** (Passo 0) documented for Next.js and Vite, including the current `create-next-app` flags and the Vitest + React Testing Library setup that F001 owns.
 
 This skill covers **discovery and documentation only** — it doesn't write application code or run scripts. It prepares the ground for a coding agent (or a harness-creator flow) to take over.
+
+## Generated layout
+
+Everything that is a document lives under `docs/`; only the canonical instruction file (and agent-native files) stay at the root.
+
+```text
+project/
+├── AGENTS.md                  # canonical, short
+├── init.sh                    # generated from docs/verification-notes.md
+├── docs/
+│   ├── PRD.md
+│   ├── feature_list.json
+│   ├── progress.md
+│   ├── session-handoff.md
+│   ├── verification-notes.md
+│   └── engineering-rules.md   # only when a stack rule matches
+├── CLAUDE.md                  # Claude Code only (imports AGENTS.md)
+└── .cursor/rules/harness.mdc  # Cursor only
+```
+
+## Repository layout
+
+```text
+SKILL.md
+references/
+├── interview-checklist.md
+├── prd-template.md
+├── existing-prd.md
+├── ide-adapters/              # claude-code, cursor, opencode
+└── harness-pack/
+    ├── agents-md.md
+    ├── feature-list-json.md
+    ├── progress-md.md
+    ├── session-handoff-md.md
+    ├── verification-notes.md
+    └── stack-rules/           # nextjs, react-vite, supabase-auth, n8n
+```
 
 ## Installation
 
@@ -161,10 +207,10 @@ Remember: work on ONLY ONE feature at a time (WIP = 1), and only update the docu
 
 ## Example: what gets generated
 
-Illustrative excerpt only (constructed for this README, not pulled from a real test run) — a small slice of `feature_list.json` and `AGENTS.md` to show the shape of the output:
+Illustrative excerpt only (constructed for this README, not pulled from a real test run) — a small slice of `docs/feature_list.json` and `AGENTS.md` to show the shape of the output:
 
 ```json
-// feature_list.json (excerpt)
+// docs/feature_list.json (excerpt)
 {
   "id": "F001",
   "title": "Walking skeleton: empty state end-to-end",

@@ -1,6 +1,20 @@
 # Changelog
 
-## v7 (current)
+## v8 (current)
+
+- **Generated layout moved to `docs/`.** PRD, `feature_list.json`, `progress.md`, `session-handoff.md`, verification notes and engineering rules now live under `docs/`; `AGENTS.md` stays at the root. `init.sh` is a script, not a document, so it stays at the root.
+- **New entry mode: existing PRD.** Reads the user's PRD without rewriting it, compares it with the template and the fixed interview block, asks only what's missing for the Harness, records gaps as `[a definir]`, and warns when the requirements aren't verifiable. The 5-pillar interview is replaced; the PRD approval gate and the Harness stage remain. Trigger updated; still excluded when both PRD and Harness already exist.
+- **Definition of Done** in the generated `AGENTS.md`: automatic checks (typecheck, lint, tests; production build at the end) plus judgment calls (no new dependency without approval, no dead code, simplest solution). Before marking a feature done: `git diff --stat` against the acceptance criteria, with out-of-scope files justified in `progress.md`.
+- **Verification that can actually fail:** `tsc --noEmit` doesn't ban explicit `any`, React hooks rules are warnings by default (use `--max-warnings 0`), and `no-console` catches debug logs.
+- **Folder structure heuristic** in the generated `AGENTS.md` (by responsibility up to ~15 screens, by feature above that). F001 now owns the structure, the 404 route and the Vitest + React Testing Library setup.
+- **`feature_list.json` rules:** async features carry explicit loading/success/error/empty criteria; criteria must be specific and only cite paths that follow the folder convention; a final **release inspection** feature is always last and depends on all others (full and reduced versions).
+- **Conditional stack rules** in `references/harness-pack/stack-rules/` (Next.js, React + Vite, Supabase Auth, n8n), generated into `docs/engineering-rules.md` only when the stack matches. Supabase guidance follows the current docs: `getClaims()` is preferred over `getUser()` on the server, and `getSession()` is treated as unverified data.
+- **Interview:** recommended answers only for technical-choice questions; product and business questions stay open. New fixed-block questions for styling, Next.js Cache Components, authentication (only when the project has it) and `code-review-lite`.
+- **Passo 0** documents manual project creation for Next.js and Vite, with `create-next-app` 16.4 flags (`--no-agents-md`, `--no-cache-components`, `--yes`), the `agentRules: false` adjustment for Next >= 16.3, and the `node_modules/next/dist/docs/` pointer.
+- **Test anti-patterns** added to `engineering-rules.md`: tests that can't fail and tests coupled to implementation.
+- Removed the Gemini Gem reference; README no longer implies Gemini compatibility. README EN/PT updated for the new layout, entry modes and stack rules.
+
+## v7
 
 Changes since v5 (intermediate v6 notes aren't tracked):
 
