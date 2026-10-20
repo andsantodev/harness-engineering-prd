@@ -89,7 +89,8 @@ fim da conversa:
    quebre o escopo do PRD em features pequenas e verificáveis. Se o projeto tiver mais
    de uma tela/rota, a primeira feature é o walking skeleton (ver regra no arquivo de
    referência) — não pule essa etapa mesmo que pareça óbvio partir direto para as
-   features de produto.
+   features de produto. A última feature é sempre a inspeção de release, dependente de
+   todas (versão completa ou reduzida, conforme o porte).
 5. Leia `references/harness-pack/progress-md.md` e gere `docs/progress.md` (log inicial
    vazio, pronto para a primeira sessão real).
 6. Leia `references/harness-pack/session-handoff-md.md` e gere `docs/session-handoff.md`

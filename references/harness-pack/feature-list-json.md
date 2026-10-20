@@ -35,6 +35,10 @@ geração inicial.
 - Um item por requisito funcional do PRD, quebrado em partes menores quando o requisito
   for grande demais para uma sessão.
 - `acceptance_criteria` sempre verificável — nunca algo subjetivo como "funciona bem".
+- Seja específico: "GET /api/items retorna 200 com lista vazia" em vez de "API funciona".
+- Só cite caminhos de arquivo que decorram da convenção de pastas registrada no AGENTS.md
+  (ex.: `src/features/items/...`). Não invente nomes de interface, componente ou endpoint
+  que o PRD não definiu.
 - Preencha `depends_on` quando uma feature precisar de outra pronta antes (use os `id`s).
 - Todas as features começam como `"status": "todo"` e `"verification_evidence": null` —
   isso é gerado uma única vez, no início do projeto.
@@ -45,6 +49,22 @@ geração inicial.
   (comum em telas), ele continua fazendo parte do `acceptance_criteria` e é conferido
   manualmente — mas como evidência registrada à parte (ex.: "conferido no navegador:
   rotas X/Y/Z carregam"), nunca dentro do `verification_command` automático.
+
+### Dados assíncronos: quatro estados
+Toda feature que carrega dado assíncrono (fetch, banco, API, Server Action) recebe
+critérios explícitos para os quatro estados, cada um verificável por teste:
+- **loading** — indicador/placeholder visível enquanto carrega
+- **success** — dado renderizado no formato esperado
+- **error** — falha mostra mensagem/estado de erro e não quebra a tela
+- **empty** — resposta vazia mostra estado vazio, não tela em branco nem "erro"
+
+Não aceite "trata erros" genérico: descreva o que aparece em cada estado.
+
+### Critérios específicos
+Critério bom descreve comportamento observável, não implementação interna. Evite
+"componente usa useState"; prefira "clicar em Salvar mostra confirmação e persiste o
+registro". Se o critério depende de caminho de arquivo, use só o que a convenção de
+pastas do AGENTS.md já garante.
 
 ### Walking skeleton (obrigatório para projetos com mais de uma tela/rota)
 Features de produto construídas isoladas, sem nada que já as ligue umas às outras,
@@ -78,3 +98,29 @@ retrofitadas, trabalho duplicado.
   visualmente, mesmo sem depender dela no grafo — o mais cedo que suas dependências
   reais permitirem, logo após o walking skeleton (F001) e antes de qualquer feature de
   página/produto individual que vá consumi-la.
+
+### Feature final — Inspeção de release (sempre a última)
+Toda `feature_list.json` termina com uma feature de inspeção de release, com
+`depends_on` em **todas** as outras e status inicial `todo`. Ela não implementa produto:
+audita o que foi construído. A posição é sempre a última — não é uma feature transversal,
+então a regra de "transversais cedo" não se aplica a ela e continua valendo para as
+demais.
+
+**Versão completa (projetos médios/grandes)** — `acceptance_criteria`:
+- Build de produção passa (`npm run build` ou equivalente do stack)
+- Nenhuma chave/segredo no código nem em variável pública (`NEXT_PUBLIC_*`, `VITE_*`)
+- `.env.example` presente, sem valores reais
+- Rota 404 responde corretamente
+- Acessibilidade básica: `label` em formulários, texto em botões, `alt` em imagens
+- `npm audit` sem vulnerabilidades relevantes (ou risco aceito e registrado)
+- Revisão de segurança final antes do push
+- [Se a entrevista disser que o projeto usa a skill `code-review-lite`: "Revisão final
+  com a skill `code-review-lite` antes do push". Se não: "Revisão de segurança final
+  antes do push" — nunca cite a skill sem o usuário ter dito que a usa.]
+
+**Versão reduzida (projetos pequenos: landing page, até ~3 telas)** — mesmos itens que
+se aplicam, sem auditoria formal: build de produção, segredos/`.env.example`, 404 (se
+houver rotas), acessibilidade básica e revisão de segurança antes do push.
+
+O `verification_command` dela é o build de produção (termina sozinho); os demais itens
+são conferidos manualmente e registrados como evidência.

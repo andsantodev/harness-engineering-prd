@@ -81,6 +81,9 @@ projeto.
 9. Tem algum plugin ou framework de desenvolvimento instalado globalmente nessa
    ferramenta (ex.: um plugin "always-on" no OpenCode)? Se sim, qual? Isso importa
    porque um plugin global pode competir com o fluxo do Harness — ver aviso na Etapa 3.
+10. O projeto usa a skill `code-review-lite`? Se sim, o critério de revisão de segurança
+    da feature final de inspeção cita essa skill pelo nome; se não, use um critério
+    genérico de revisão de segurança antes do push.
 
 ## Regra de ouro
 Só avance para o Bloco fixo (Parte 2) depois que a sabatina declarar os 5 pilares
