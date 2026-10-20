@@ -39,6 +39,15 @@ design — o usuário quer liberdade para escolher/testar isso por conta própri
   do escopo
 - Documente decisões e fatos específicos do projeto em `docs/`, não aqui
 
+## Estrutura de pastas
+[Heurística — registre a escolha aqui e no PRD. Até ~15 telas: por responsabilidade,
+com as rotas no diretório que o framework exige (`src/app/` no Next, `src/pages/` ou
+equivalente no Vite) e `components/`, `services/` (acesso a dados/API), `hooks/`,
+`types/`, `lib/` fora das rotas. Acima de ~15 telas: por feature —
+`features/<nome>/` com componentes, hooks, serviços e tipos; as rotas ficam finas e só
+compõem a feature. Em Next, `src/app/` só para rotas; em Vite, o diretório de rotas do
+template. Para outro stack, adapte ao que a ferramenta exige.]
+
 ## Definition of Done
 **Automática** (é o que o `verification_command` roda — precisa terminar sozinho e
 retornar falha quando algo quebra): typecheck, lint e testes. Build entra ao final do
@@ -87,3 +96,5 @@ conforme o projeto]
 - A Definition of Done é curta de propósito: os detalhes de como fazer a verificação
   falhar de verdade (typecheck, lint, testes) vão para `docs/verification-notes.md`, e as
   regras específicas de stack para `docs/engineering-rules.md`.
+- A estrutura de pastas é heurística, não dogma: adapte os nomes ao stack, registre a
+  escolha no PRD e mantenha a seção com no máximo ~15 linhas.

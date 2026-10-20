@@ -56,9 +56,14 @@ navegável (tela em branco no final, mesmo com tudo "done"). Para evitar isso:
 - `acceptance_criteria` de F001 inclui algo verificável no navegador, não só testes
   unitários — ex.: "app abre e renderiza a rota inicial sem tela em branco", "navegação
   entre as rotas previstas funciona".
+- F001 também cria a estrutura de pastas registrada no AGENTS.md (por responsabilidade ou
+  por feature), a rota 404 (quando o stack tiver rotas) e, se o projeto ainda não tiver
+  test runner, instala e configura Vitest + React Testing Library com um teste que roda
+  de verdade. Não deixe esses itens para uma feature posterior.
 - Se o projeto tiver uma única tela/rota (ex.: landing page, CLI, script), F001 pode ser
   a primeira feature de produto normalmente — o esqueleto só se justifica quando há mais
-  de uma tela/rota para conectar.
+  de uma tela/rota para conectar. Os itens de estrutura, 404 e test runner continuam
+  valendo quando fizerem sentido para o stack.
 
 ### Ordenação de features transversais
 `depends_on` correto garante que nada quebra — não garante que nada seja retrabalhado.
