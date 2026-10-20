@@ -67,21 +67,28 @@ projeto.
 2. Greenfield (do zero) ou já existe repositório/código em andamento?
 3. Linguagem/framework já definidos, ou quer sugestão?
 4. Frontend, backend, banco de dados, hospedagem — o que já está decidido?
-5. Existe alguma referência visual/orientação de design já definida para este projeto?
+5. (Só para frontend React/Next) Estilização: Tailwind (padrão) ou outra?
+6. (Só se o stack for Next.js) Cache Components? Padrão: não. Se sim, o projeto liga
+   `cacheComponents` e usa `<Suspense>`/`'use cache'`; o Passo 0 deixa de passar
+   `--no-cache-components`.
+7. (Só se o projeto tiver autenticação) Qual provedor/estratégia? Usa Supabase Auth? Se
+   não tiver autenticação, pule esta pergunta.
+8. Existe alguma referência visual/orientação de design já definida para este projeto?
    Pode ser: um `DESIGN.md` existente, print, link do Figma, Google Stitch, outro style
    guide, um MCP já conectado (ex.: Figma, Google Stitch), ou uma skill nomeada que você
-   já usa/quer usar (ex.: `frontend-design`). Se não houver nada definido, siga sem
-   forçar nenhuma diretriz de design.
-6. Como você vai saber que uma feature está pronta? (testes automatizados, checklist
+   já usa/quer usar (ex.: `frontend-design`). Se houver um `DESIGN.md` pronto, ele entra
+   como `docs/DESIGN.md` e vira a referência citada no AGENTS.md. Se não houver nada
+   definido, siga sem forçar nenhuma diretriz de design.
+9. Como você vai saber que uma feature está pronta? (testes automatizados, checklist
    manual, os dois)
-7. Já existe algum comando de build/test/lint no projeto, ou isso ainda vai ser
-   definido do zero?
-8. Qual(is) ferramenta(s) de codificação com IA você vai usar nesse projeto? (Claude
-   Code, OpenCode, Cursor, outro)
-9. Tem algum plugin ou framework de desenvolvimento instalado globalmente nessa
-   ferramenta (ex.: um plugin "always-on" no OpenCode)? Se sim, qual? Isso importa
-   porque um plugin global pode competir com o fluxo do Harness — ver aviso na Etapa 3.
-10. O projeto usa a skill `code-review-lite`? Se sim, o critério de revisão de segurança
+10. Já existe algum comando de build/test/lint no projeto, ou isso ainda vai ser
+    definido do zero?
+11. Qual(is) ferramenta(s) de codificação com IA você vai usar nesse projeto? (Claude
+    Code, OpenCode, Cursor, outro)
+12. Tem algum plugin ou framework de desenvolvimento instalado globalmente nessa
+    ferramenta (ex.: um plugin "always-on" no OpenCode)? Se sim, qual? Isso importa
+    porque um plugin global pode competir com o fluxo do Harness — ver aviso na Etapa 3.
+13. O projeto usa a skill `code-review-lite`? Se sim, o critério de revisão de segurança
     da feature final de inspeção cita essa skill pelo nome; se não, use um critério
     genérico de revisão de segurança antes do push.
 

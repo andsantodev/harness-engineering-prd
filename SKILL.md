@@ -98,19 +98,25 @@ fim da conversa:
 7. Leia `references/harness-pack/verification-notes.md` e gere `docs/verification-notes.md`
    (notas de bootstrap, verificação e o Passo 0 de criação do projeto) e o `init.sh` na
    raiz do projeto (script pronto para rodar — esta skill não executa nada).
-8. Para cada agente de codificação escolhido no passo 1, leia o adaptador
+8. Verifique o stack do PRD contra os arquivos em
+   `references/harness-pack/stack-rules/` (Next.js, React + Vite, Supabase Auth, n8n).
+   Leia **só** os que baterem com o projeto e, se algum bater, gere
+   `docs/engineering-rules.md` com as regras aplicáveis. Se nenhum bater, não gere o
+   arquivo. Nunca misture regra de stack que o projeto não usa.
+9. Para cada agente de codificação escolhido no passo 1, leia o adaptador
    correspondente em `references/ide-adapters/` e gere o arquivo nativo daquele agente.
    Esses arquivos nunca duplicam o conteúdo do AGENTS.md — eles apontam de volta para
    ele.
-9. Mostre a árvore de pastas final do pacote em um bloco de código.
-10. Informe que todos os arquivos gerados (`AGENTS.md`, `docs/PRD.md`,
+10. Mostre a árvore de pastas final do pacote em um bloco de código.
+11. Informe que todos os arquivos gerados (`AGENTS.md`, `docs/PRD.md`,
     `docs/feature_list.json`, `docs/progress.md`, `docs/session-handoff.md`,
-    `docs/verification-notes.md`, `init.sh`, adaptadores de agente) são estado
+    `docs/verification-notes.md`, `docs/engineering-rules.md` quando existir, `init.sh`,
+    adaptadores de agente) são estado
     persistente do harness e devem ir para o Git — não
     são artefatos de sessão. A única exceção seria algo específico de ambiente/segredo
     (`.env`, chaves), que esta skill não gera e cujo commit já fica proibido
     explicitamente no AGENTS.md.
-11. Encerre a entrega com um aviso padrão, sempre: ferramentas de codificação com
+12. Encerre a entrega com um aviso padrão, sempre: ferramentas de codificação com
     plugins/frameworks globais "always-on" (ex.: um plugin que se injeta antes da
     leitura do AGENTS.md) podem competir com o fluxo do Harness — sintomas: perguntas
     extras não previstas aqui, arquivos criados fora do plano, lentidão/consumo alto de

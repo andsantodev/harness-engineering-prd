@@ -37,6 +37,8 @@ design — o usuário quer liberdade para escolher/testar isso por conta própri
 - Antes de marcar `done`, rode `git diff --stat`, compare os arquivos com o
   `acceptance_criteria` da feature e justifique em docs/progress.md qualquer arquivo fora
   do escopo
+- [Se `docs/engineering-rules.md` foi gerado: "Antes de mexer em auth, Server Actions,
+  banco ou workflows n8n, leia `docs/engineering-rules.md`." Sem esse arquivo, omitir.]
 - Documente decisões e fatos específicos do projeto em `docs/`, não aqui
 
 ## Estrutura de pastas
@@ -98,3 +100,5 @@ conforme o projeto]
   regras específicas de stack para `docs/engineering-rules.md`.
 - A estrutura de pastas é heurística, não dogma: adapte os nomes ao stack, registre a
   escolha no PRD e mantenha a seção com no máximo ~15 linhas.
+- A linha de `docs/engineering-rules.md` só entra quando esse arquivo foi gerado para o
+  stack do projeto; nunca crie um arquivo vazio só para justificar a linha.

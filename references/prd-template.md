@@ -42,9 +42,9 @@ Só inclua se a entrevista trouxe algo (bloco fixo, pergunta de design): `DESIGN
 existente, print, link
 do Figma, Google Stitch, style guide, MCP conectado (ex.: Figma, Google Stitch), ou uma
 skill nomeada (ex.: `frontend-design`). Registre o que foi indicado e, se for um arquivo,
-onde vai viver no projeto (ex.: `docs/DESIGN.md` ou `docs/design/`) — a adição do arquivo
-em si é manual, feita pelo usuário depois. Se nada foi indicado, omita esta seção e não
-force nenhuma diretriz de design no restante do PRD/Harness.
+onde vai viver no projeto: um `DESIGN.md` pronto entra como `docs/DESIGN.md` — a adição do
+arquivo em si é manual, feita pelo usuário depois. Se nada foi indicado, omita esta seção
+e não force nenhuma diretriz de design no restante do PRD/Harness.
 
 ## 9. Métricas de sucesso
 Como saber que o projeto funcionou, em termos mensuráveis sempre que possível.
