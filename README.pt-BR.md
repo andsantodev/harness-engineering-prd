@@ -103,6 +103,17 @@ cp -r harness-engineering-prd/SKILL.md harness-engineering-prd/references \
       <pasta-de-skills-do-seu-agente>/harness-engineering-prd/
 ```
 
+## Antes do primeiro comando
+
+O projeto precisa existir antes de você colar qualquer prompt abaixo:
+
+1. Crie o projeto com o comando registrado na nota de verificação do seu stack (Passo 0) — a skill documenta, você executa.
+2. Copie `AGENTS.md` e `docs/` para a raiz do projeto criado (o `create-next-app` recusa pasta com arquivos pré-existentes, então copie depois da criação).
+3. Rode `init.sh`.
+4. Abra o agente de codificação na pasta do projeto.
+
+Veja o item Passo 0 em **O que o Harness inclui** acima. Os comandos exatos de cada stack ficam na seção Passo 0 de `docs/verification-notes.md` (gerado pela skill; fonte: `references/harness-pack/verification-notes.md`) e não são duplicados aqui.
+
 ## Prompts de início rápido
 
 Use estes prompts depois de instalar a skill, já dentro de um projeto.
@@ -111,19 +122,21 @@ Use estes prompts depois de instalar a skill, já dentro de um projeto.
 <summary><strong>1. Início de projeto</strong></summary>
 
 ```markdown
-Leia AGENTS.md, docs/PRD.md, session-handoff.md e feature_list.json antes de fazer qualquer coisa.
+Leia AGENTS.md, docs/PRD.md, docs/session-handoff.md e docs/feature_list.json antes de fazer qualquer coisa.
 
 Comece pela feature **POR PROJETO: ID da primeira feature elegível — normalmente a que não tem depends_on** — ela não tem dependências e as demais (ou a maioria) dependem dela:
 
 1. Implemente o código necessário.
 2. **POR PROJETO: se o projeto usa uma skill de design própria (ex. frontend-design), inclua aqui "use a skill [nome] para decisões de layout/visuais"**
-3. Rode o comando de verificação: npm run test:unit
-4. Se os testes passarem, atualize os arquivos:
-   - feature_list.json (mude status para "done" e insira a evidência)
-   - progress.md (adicione o registro do que foi feito)
-   - session-handoff.md (atualize o estado atual e a próxima tarefa)
+3. Execute o `verification_command` da feature (campo em docs/feature_list.json) e mostre a saída completa.
+4. Rode `git diff --stat`, compare com os critérios de aceite da feature e justifique em docs/progress.md qualquer arquivo fora do escopo.
+5. Se a verificação passar, atualize os arquivos:
+   - docs/feature_list.json (mude status para "done" e insira a evidência)
+   - docs/progress.md (adicione o registro do que foi feito)
+   - docs/session-handoff.md (atualize o estado atual e a próxima tarefa)
 
 Não avance para nenhuma outra funcionalidade sem minha aprovação.
+Se a feature for a Inspeção de release, ela exige minha aprovação explícita antes de começar.
 ```
 </details>
 
@@ -131,15 +144,16 @@ Não avance para nenhuma outra funcionalidade sem minha aprovação.
 <summary><strong>2. Próximas features</strong></summary>
 
 ```markdown
-Consulte o AGENTS.md e o session-handoff.md.
+Consulte o AGENTS.md e o arquivo docs/session-handoff.md.
 
-Selecione a PRÓXIMA funcionalidade com status "todo" na feature_list.json cujas dependências estejam concluídas (respeitando o campo depends_on).
+Selecione a PRÓXIMA funcionalidade com status "todo" em docs/feature_list.json cujas dependências estejam concluídas (respeitando o campo depends_on).
 
 Trabalhe EXCLUSIVAMENTE nessa funcionalidade:
 1. Desenvolva o código seguindo os critérios de aceite definidos no JSON.
-2. Execute o comando de verificação configurado para essa feature (ex: npm run test:unit ou npm run test:e2e).
-3. Mostre o resultado dos testes aqui no chat.
-4. Se tudo estiver aprovado, atualize o feature_list.json, progress.md e session-handoff.md.
+2. Execute o `verification_command` da feature (campo em docs/feature_list.json) e mostre a saída completa.
+3. Rode `git diff --stat`, compare com os critérios de aceite da feature e justifique em docs/progress.md qualquer arquivo fora do escopo.
+4. Se tudo estiver aprovado, atualize docs/feature_list.json, docs/progress.md e docs/session-handoff.md.
+Se a feature for a Inspeção de release, ela exige minha aprovação explícita antes de começar.
 ```
 </details>
 
@@ -147,16 +161,18 @@ Trabalhe EXCLUSIVAMENTE nessa funcionalidade:
 <summary><strong>3. Modo loop autônomo</strong></summary>
 
 ```markdown
-Trabalhe nas próximas features elegíveis de feature_list.json em sequência, seguindo o AGENTS.md (uma feature por vez, verificação antes de concluir).
+Trabalhe nas próximas features elegíveis de docs/feature_list.json em sequência, seguindo o AGENTS.md (uma feature por vez, verificação antes de concluir).
 
 Para CADA funcionalidade:
 1. Identifique a próxima feature pendente ("todo") com dependências concluídas.
 2. Desenvolva o código necessário.
-3. Execute rigorosamente o comando de verificação correspondente (ex: npm run test:unit ou npm run test:e2e).
+3. Execute rigorosamente o `verification_command` da feature (campo em docs/feature_list.json) e mostre a saída completa.
+4. Rode `git diff --stat`, compare com os critérios de aceite da feature e justifique em docs/progress.md qualquer arquivo fora do escopo.
 
 REGRAS DE CONDIÇÃO DE PARADA E SEGURANÇA:
 - 🔴 SE OS TESTES FALHAREM OU OCORRER ERRO DE BUILD/LINT: PARE O LOOP IMEDIATAMENTE. Não marque a funcionalidade como "done". Explique o erro no chat e aguarde minha intervenção.
-- 🟢 SE OS TESTES PASSAREM COM SUCESSO: Atualize feature_list.json (status "done" + evidência), progress.md e session-handoff.md — SEMPRE os três juntos, a cada feature concluída (não deixe o session-handoff.md só pra pausa final: se o loop for interrompido no meio, ele precisa refletir a última feature realmente concluída).
+- 🟢 SE OS TESTES PASSAREM COM SUCESSO: Atualize docs/feature_list.json (status "done" + evidência), docs/progress.md e docs/session-handoff.md — SEMPRE os três juntos, a cada feature concluída (não deixe o arquivo docs/session-handoff.md só pra pausa final: se o loop for interrompido no meio, ele precisa refletir a última feature realmente concluída).
+- 🟠 SE A PRÓXIMA FEATURE ELEGÍVEL FOR A INSPEÇÃO DE RELEASE: PARE O LOOP ANTES DE EXECUTÁ-LA. Explique no chat que o próximo passo é a inspeção final e aguarde minha aprovação explícita.
 - 🟡 SE NÃO HOUVER NENHUMA FEATURE "todo" COM DEPENDÊNCIAS SATISFEITAS (tudo "done" ou "blocked"): PARE O LOOP. Isso também é uma condição de parada — não é falha, mas não há trabalho seguro pra continuar. Explique o estado no chat.
 - Em seguida (fora dos dois casos acima), passe AUTOMATICAMENTE para a próxima funcionalidade pendente sem me perguntar.
 
@@ -172,8 +188,8 @@ A feature **A CADA USO: ID da feature** falhou na verificação com este resulta
 
 **A CADA USO: colar aqui a saída do comando de verificação / erro / teste que falhou**
 
-Não marque a feature como concluída. Investigue a causa raiz, corrija, rode a verificação de novo do zero (não assuma que passou) e só então atualize feature_list.json com o status real e a evidência.
-Registre em progress.md o que quebrou e como foi corrigido.
+Não marque a feature como concluída. Investigue a causa raiz, corrija, rode o `verification_command` da feature (campo em docs/feature_list.json) de novo do zero (não assuma que passou) e só então atualize docs/feature_list.json com o status real e a evidência.
+Registre em docs/progress.md o que quebrou e como foi corrigido.
 ```
 </details>
 
@@ -182,10 +198,10 @@ Registre em progress.md o que quebrou e como foi corrigido.
 
 ```markdown
 Vamos encerrar esta sessão de desenvolvimento. Por favor:
-1. Rode os comandos gerais de verificação: npm run lint e npm run build.
+1. Rode os comandos gerais de verificação listados na Definition of Done do AGENTS.md (tipicamente typecheck, lint e build).
 2. Garanta que o repositório está em um estado limpo e sem erros de compilação.
-3. Atualize o arquivo session-handoff.md descrevendo exatamente o que foi feito nesta sessão, quais arquivos foram modificados e qual é a instrução exata para retomar no F00X.
-4. Atualize o progress.md com os últimos avanços.
+3. Atualize o arquivo docs/session-handoff.md descrevendo exatamente o que foi feito nesta sessão, quais arquivos foram modificados e qual é a instrução exata para retomar no F00X.
+4. Atualize o arquivo docs/progress.md com os últimos avanços.
 5. Só faça commit se o projeto estiver num estado seguro para retomar depois — se não estiver, me avise antes de commitar.
 ```
 </details>
@@ -194,11 +210,11 @@ Vamos encerrar esta sessão de desenvolvimento. Por favor:
 <summary><strong>6. Retomada de nova sessão</strong></summary>
 
 ```markdown
-Leia atentamente os arquivos AGENTS.md, progress.md e, em especial, o session-handoff.md para entender o contexto atual do projeto e onde a sessão anterior foi encerrada.
+Leia atentamente os arquivos AGENTS.md, docs/progress.md e, em especial, o arquivo docs/session-handoff.md para entender o contexto atual do projeto e onde a sessão anterior foi encerrada.
 
 Antes de escrever ou alterar qualquer código:
 1. Execute os comandos de verificação inicial para confirmar que o repositório está num estado saudável e compilável.
-2. Identifique no session-handoff.md e na feature_list.json qual é a próxima funcionalidade pendente (status "todo") cujas dependências já foram concluídas.
+2. Identifique em docs/session-handoff.md e em docs/feature_list.json qual é a próxima funcionalidade pendente (status "todo") cujas dependências já foram concluídas.
 3. Resuma brevemente para mim em qual funcionalidade você vai trabalhar nesta sessão e aguarde minha confirmação para começar.
 
 Lembre-se: trabalhe em APENAS UMA funcionalidade por vez (WIP = 1) e só atualize a documentação e o status para "done" após rodar e passar nos testes de verificação.
