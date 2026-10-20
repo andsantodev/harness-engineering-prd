@@ -29,8 +29,8 @@ Decida isto antes de gerar qualquer conteúdo, e mantenha a mesma decisão do in
 fim da conversa:
 
 - **Se você tem uma ferramenta de criação de arquivos/artifacts** (ex.: create_file,
-  artifact): gere cada documento — PRD, AGENTS.md, feature_list.json, etc. — como um
-  arquivo separado, entregue para download.
+  artifact): gere cada documento — PRD, AGENTS.md, docs/feature_list.json, etc. — como
+  um arquivo separado, entregue para download.
 - **Se você NÃO tem essa capacidade** (por exemplo, está rodando como as instruções de
   um Gemini Gem, sem ferramenta de arquivo): gere todo o conteúdo em Markdown estrito,
   direto na resposta. Use um cabeçalho `## nome-do-arquivo` antes de cada documento e um
@@ -79,26 +79,27 @@ fim da conversa:
    `references/prd-template.md`.
 3. Leia `references/harness-pack/agents-md.md` e gere o `AGENTS.md` canônico
    (agnóstico de agente de codificação) a partir do PRD aprovado.
-4. Leia `references/harness-pack/feature-list-json.md` e gere `feature_list.json` —
+4. Leia `references/harness-pack/feature-list-json.md` e gere `docs/feature_list.json` —
    quebre o escopo do PRD em features pequenas e verificáveis. Se o projeto tiver mais
    de uma tela/rota, a primeira feature é o walking skeleton (ver regra no arquivo de
    referência) — não pule essa etapa mesmo que pareça óbvio partir direto para as
    features de produto.
-5. Leia `references/harness-pack/progress-md.md` e gere `progress.md` (log inicial
+5. Leia `references/harness-pack/progress-md.md` e gere `docs/progress.md` (log inicial
    vazio, pronto para a primeira sessão real).
-6. Leia `references/harness-pack/session-handoff-md.md` e gere `session-handoff.md`
+6. Leia `references/harness-pack/session-handoff-md.md` e gere `docs/session-handoff.md`
    (estado inicial: nenhuma sessão rodou ainda, próxima feature sugerida).
-7. Leia `references/harness-pack/verification-notes.md` e gere as notas/comandos de
-   bootstrap e verificação (equivalente ao `init.sh` do curso, como conteúdo pronto para
-   colar — esta skill não executa nada).
+7. Leia `references/harness-pack/verification-notes.md` e gere `docs/verification-notes.md`
+   (notas de bootstrap, verificação e o Passo 0 de criação do projeto) e o `init.sh` na
+   raiz do projeto (script pronto para rodar — esta skill não executa nada).
 8. Para cada agente de codificação escolhido no passo 1, leia o adaptador
    correspondente em `references/ide-adapters/` e gere o arquivo nativo daquele agente.
    Esses arquivos nunca duplicam o conteúdo do AGENTS.md — eles apontam de volta para
    ele.
 9. Mostre a árvore de pastas final do pacote em um bloco de código.
-10. Informe que todos os arquivos gerados (`docs/PRD.md`, `AGENTS.md`,
-    `feature_list.json`, `progress.md`, `session-handoff.md`, notas de verificação,
-    adaptadores de agente) são estado persistente do harness e devem ir para o Git — não
+10. Informe que todos os arquivos gerados (`AGENTS.md`, `docs/PRD.md`,
+    `docs/feature_list.json`, `docs/progress.md`, `docs/session-handoff.md`,
+    `docs/verification-notes.md`, `init.sh`, adaptadores de agente) são estado
+    persistente do harness e devem ir para o Git — não
     são artefatos de sessão. A única exceção seria algo específico de ambiente/segredo
     (`.env`, chaves), que esta skill não gera e cujo commit já fica proibido
     explicitamente no AGENTS.md.
@@ -121,8 +122,8 @@ Curtos de propósito — são invariantes, não um manual:
   projeto, não dentro da skill.
 - O arquivo de instrução raiz (AGENTS.md) é enxuto: roteamento e invariantes, não
   documentação completa de arquitetura.
-- Preferir arquivos de estado (`feature_list.json`, `progress.md`) a depender do
-  histórico da conversa.
+- Preferir arquivos de estado (`docs/feature_list.json`, `docs/progress.md`) a depender
+  do histórico da conversa.
 - Nunca embutir comportamento destrutivo sem deixar explícito que precisa de aprovação
   do usuário.
 
@@ -130,7 +131,7 @@ Curtos de propósito — são invariantes, não um manual:
 
 Assuma o idioma da conversa para a entrevista e para o PRD (incluindo o arquivo
 `docs/PRD.md` entregue na Etapa 3) — é documentação de produto para humanos. Para os
-arquivos "canônicos" da família AGENTS.md (`AGENTS.md`, `feature_list.json`,
+arquivos "canônicos" da família AGENTS.md (`AGENTS.md`, `docs/feature_list.json`,
 adaptadores de agente), o padrão é inglês — é a convenção que essas ferramentas e o agente
 de codificação que vai lê-las depois esperam. Avise essa escolha ao entregar a Etapa 3 e
 ofereça gerar em português se o usuário preferir.

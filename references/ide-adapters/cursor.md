@@ -12,9 +12,9 @@ description: Regras de harness do projeto — ler antes de qualquer tarefa
 alwaysApply: true
 ---
 
-Antes de qualquer tarefa, siga o AGENTS.md na raiz do projeto: leia progress.md e
-feature_list.json, trabalhe em uma feature por vez, e rode a verificação antes de marcar
-algo como concluído.
+Antes de qualquer tarefa, siga o AGENTS.md na raiz do projeto: leia docs/progress.md e
+docs/feature_list.json, trabalhe em uma feature por vez, e rode a verificação antes de
+marcar algo como concluído.
 ```
 
 ## Regra de geração

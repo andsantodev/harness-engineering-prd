@@ -1,7 +1,11 @@
-# Notas de verificação / bootstrap (equivalente ao init.sh)
+# Notas de verificação / bootstrap (docs/verification-notes.md + init.sh)
 
-Esta skill não executa comandos — ela entrega o conteúdo pronto para o usuário salvar
-como `init.sh` (ou rodar manualmente) no próprio projeto.
+Esta skill não executa comandos. Ela entrega dois artefatos:
+
+- `docs/verification-notes.md` — as notas: Passo 0 de criação do projeto, comandos e o
+  que conferir para a verificação falhar de verdade.
+- `init.sh` na raiz do projeto — o script executável (não é documento, por isso fica
+  fora de `docs/`), pronto para o usuário salvar e rodar.
 
 ## O que incluir
 1. Instalação de dependências (comando do gerenciador de pacotes do stack escolhido)

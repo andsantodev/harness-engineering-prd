@@ -1,4 +1,4 @@
-# Como gerar o feature_list.json
+# Como gerar o docs/feature_list.json
 
 Cada requisito funcional do PRD vira um item aqui — quebrado em pedaços pequenos o
 bastante para caber numa única sessão de agente.

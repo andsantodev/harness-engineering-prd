@@ -1,4 +1,4 @@
-# Como gerar o progress.md
+# Como gerar o docs/progress.md
 
 Log de sessões, entrada mais recente no topo. Na geração inicial, o arquivo começa
 vazio — só com a estrutura pronta para a primeira sessão real de trabalho.

@@ -20,13 +20,13 @@ mencionado na entrevista, NÃO adicionar essa linha nem forçar nenhuma diretriz
 design — o usuário quer liberdade para escolher/testar isso por conta própria.]
 
 ## Antes de começar (toda sessão)
-1. Leia progress.md — o que aconteceu na última sessão
-2. Leia feature_list.json — o que está feito, o que falta
+1. Leia docs/progress.md — o que aconteceu na última sessão
+2. Leia docs/feature_list.json — o que está feito, o que falta
 3. Rode os comandos de verificação abaixo para confirmar que o projeto está num estado
    saudável
 
 ## Como trabalhar aqui
-- Escolha exatamente UMA feature não concluída de feature_list.json por vez (WIP=1)
+- Escolha exatamente UMA feature não concluída de docs/feature_list.json por vez (WIP=1)
 - A primeira feature (F001) é o esqueleto do app (rotas + navegação + shell mínimo,
   rodando no navegador) — não pule para features de produto sem ela estar concluída
 - [Se a entrevista (bloco fixo, stack/backend) revelou backend/banco real com MCP
@@ -34,7 +34,7 @@ design — o usuário quer liberdade para escolher/testar isso por conta própri
   MCP do backend — evite SQL de migração solto fora dele." Sem MCP conectado, omitir
   esse bullet.]
 - Não marque uma feature como concluída sem rodar a verificação e registrar a evidência
-- Documente decisões e fatos específicos do projeto em /docs, não aqui
+- Documente decisões e fatos específicos do projeto em `docs/`, não aqui
 
 ## Comandos de verificação
 [preencher com os comandos reais informados na entrevista — build, test, lint. Se o
@@ -52,9 +52,9 @@ combinado acima, não trocar dependências de produção, não fazer push direto
 conforme o projeto]
 
 ## Ao final de cada sessão
-1. Atualize progress.md com o que foi feito e verificado
-2. Atualize feature_list.json
-3. Atualize session-handoff.md com o estado atual e a próxima feature sugerida
+1. Atualize docs/progress.md com o que foi feito e verificado
+2. Atualize docs/feature_list.json
+3. Atualize docs/session-handoff.md com o estado atual e a próxima feature sugerida
 4. Só faça commit se o projeto ficar num estado seguro para retomar depois
 ```
 
