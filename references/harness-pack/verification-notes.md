@@ -15,6 +15,20 @@ Esta skill não executa comandos. Ela entrega dois artefatos:
 5. Um "health check" simples — algo rápido que confirma que o ambiente está OK antes de
    começar a trabalhar
 
+## Faça a verificação falhar de verdade
+
+Comando que sempre passa não verifica nada. Antes de confiar no `verification_command`:
+
+- `tsc --noEmit` valida tipos, mas **não proíbe `any` explícito**. Para isso é preciso uma
+  regra de lint (`@typescript-eslint/no-explicit-any` como `error`).
+- As regras de hooks do React (`react-hooks/*`) costumam vir como **warning**, não erro.
+  Rode o lint com `--max-warnings 0` (ou promova as regras a erro) para que warning
+  quebre a verificação.
+- Ligue `no-console` (error ou warning + `--max-warnings 0`) para não deixar log de debug
+  ir para produção.
+- Teste o caminho de falha: quebre algo de propósito uma vez e confirme que o comando
+  retorna código de saída diferente de zero. Se não retornar, o harness não tem evidência.
+
 ## Formato de entrega
 
 Entregue como um bloco de código bash, pronto para colar num arquivo `init.sh`:

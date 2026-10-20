@@ -34,15 +34,30 @@ design — o usuário quer liberdade para escolher/testar isso por conta própri
   MCP do backend — evite SQL de migração solto fora dele." Sem MCP conectado, omitir
   esse bullet.]
 - Não marque uma feature como concluída sem rodar a verificação e registrar a evidência
+- Antes de marcar `done`, rode `git diff --stat`, compare os arquivos com o
+  `acceptance_criteria` da feature e justifique em docs/progress.md qualquer arquivo fora
+  do escopo
 - Documente decisões e fatos específicos do projeto em `docs/`, não aqui
+
+## Definition of Done
+**Automática** (é o que o `verification_command` roda — precisa terminar sozinho e
+retornar falha quando algo quebra): typecheck, lint e testes. Build entra ao final do
+projeto, não em toda feature.
+
+**Julgamento** (confira antes de marcar done):
+- Nenhuma dependência nova sem aprovação do usuário
+- Sem código morto, comentado ou não usado
+- A solução mais simples que atende ao critério, sem abstração antecipada
+- Cada critério de aceite conferido, não só "os testes passaram"
 
 ## Comandos de verificação
 [preencher com os comandos reais informados na entrevista — build, test, lint. Se o
 usuário não informou, escreva "[a definir]" e sugira os comandos padrão do stack
-escolhido]
+escolhido. Cada feature usa o seu `verification_command`; este bloco reúne o conjunto]
 
 ## Limites (o que NÃO fazer sem aprovação explícita)
 - Nunca commitar `.env`, chaves de API, tokens ou outras credenciais
+- Não adicionar dependência nova sem aprovação explícita do usuário
 [Se o backend for Supabase (ou outro com RLS): adicionar também "Habilitar RLS em toda
 tabela nova; nunca expor a `service_role` key no frontend/client-side; toda política de
 acesso deve ser explícita — nunca 'permitir tudo' como atalho." Sem backend com RLS,
@@ -69,3 +84,6 @@ conforme o projeto]
   bloco fixo revelar backend real com MCP/RLS.
 - Mantenha o arquivo final abaixo de ~100 linhas. Se o projeto tiver muita informação
   específica, ela vai para `/docs` (referenciado, não copiado para dentro do AGENTS.md).
+- A Definition of Done é curta de propósito: os detalhes de como fazer a verificação
+  falhar de verdade (typecheck, lint, testes) vão para `docs/verification-notes.md`, e as
+  regras específicas de stack para `docs/engineering-rules.md`.
