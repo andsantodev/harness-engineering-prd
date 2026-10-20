@@ -37,8 +37,8 @@ fim da conversa:
 - **Se você tem uma ferramenta de criação de arquivos/artifacts** (ex.: create_file,
   artifact): gere cada documento — PRD, AGENTS.md, docs/feature_list.json, etc. — como
   um arquivo separado, entregue para download.
-- **Se você NÃO tem essa capacidade** (por exemplo, está rodando como as instruções de
-  um Gemini Gem, sem ferramenta de arquivo): gere todo o conteúdo em Markdown estrito,
+- **Se você NÃO tem essa capacidade** (por exemplo, um ambiente sem criação de
+  arquivos): gere todo o conteúdo em Markdown estrito,
   direto na resposta. Use um cabeçalho `## nome-do-arquivo` antes de cada documento e um
   bloco de código para o conteúdo. Confira que todo `**negrito**`, `` `código` `` e
   bloco cercado por crases esteja aberto e fechado corretamente antes de terminar a
