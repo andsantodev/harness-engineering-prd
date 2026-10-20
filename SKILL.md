@@ -102,7 +102,11 @@ fim da conversa:
    `references/harness-pack/stack-rules/` (Next.js, React + Vite, Supabase Auth, n8n).
    Leia **só** os que baterem com o projeto e, se algum bater, gere
    `docs/engineering-rules.md` com as regras aplicáveis. Se nenhum bater, não gere o
-   arquivo. Nunca misture regra de stack que o projeto não usa.
+   arquivo. Nunca misture regra de stack que o projeto não usa. Se o projeto tiver test
+   runner, feche o arquivo com dois anti-padrões de teste: (1) teste que não pode falhar
+   — confere só o que ele mesmo simulou e continua verde com o código quebrado; (2)
+   teste acoplado à implementação — quebra ao refatorar sem mudar comportamento porque
+   espiona detalhe interno em vez do resultado observável.
 9. Para cada agente de codificação escolhido no passo 1, leia o adaptador
    correspondente em `references/ide-adapters/` e gere o arquivo nativo daquele agente.
    Esses arquivos nunca duplicam o conteúdo do AGENTS.md — eles apontam de volta para

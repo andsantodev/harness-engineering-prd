@@ -5,6 +5,12 @@ debate a ideia até você estar convencido de que o escopo é sólido; o bloco f
 formaliza o que ainda não apareceu nesse debate (nome definitivo, ferramenta de
 codificação, comandos). Nunca inverta.
 
+**Resposta recomendada:** em toda pergunta de **escolha técnica** (stack, banco,
+hospedagem, libs, estilização, Cache Components, provedor de auth), sugira uma resposta
+recomendada ao lado da pergunta, para o usuário confirmar ou corrigir. Em perguntas de
+**produto e negócio** (problema, público, UX, métricas, escopo do MVP), nunca sugira
+resposta — o usuário é a fonte da verdade. O teto de rodadas continua valendo.
+
 ## Parte 1 — Sabatina adaptativa (5 pilares)
 
 ### Postura
