@@ -28,7 +28,8 @@ design — o usuário quer liberdade para escolher/testar isso por conta própri
 ## Como trabalhar aqui
 - Escolha exatamente UMA feature não concluída de docs/feature_list.json por vez (WIP=1)
 - A primeira feature (F001) é o esqueleto do app (rotas + navegação + shell mínimo,
-  rodando no navegador) — não pule para features de produto sem ela estar concluída
+  rodando no navegador) e também cria a estrutura de pastas, a rota 404 e o test runner,
+  se ainda não existirem — não pule para features de produto sem ela estar concluída
 - [Se a entrevista (bloco fixo, stack/backend) revelou backend/banco real com MCP
   conectado (ex.: Supabase): adicionar "Toda criação/alteração de schema passa pelo
   MCP do backend — evite SQL de migração solto fora dele." Sem MCP conectado, omitir
