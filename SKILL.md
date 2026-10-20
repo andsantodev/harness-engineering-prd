@@ -1,6 +1,6 @@
 ---
 name: harness-engineering-prd
-description: Gera um PRD (Product Requirements Document) e o pacote completo de documentos Harness (AGENTS.md canônico, feature_list.json, progress.md, session-handoff.md, notas de verificação/bootstrap) a partir da descrição de um projeto de software, seguindo os padrões do curso Learn Harness Engineering. Também gera os arquivos de configuração nativos do agente de codificação escolhido (CLAUDE.md para Claude Code, .cursor/rules/*.mdc para Cursor, suporte direto no OpenCode). Use sempre que o usuário descrever uma ideia de projeto, app, feature ou produto e pedir ajuda para começar, estruturar, documentar ou preparar o repositório para um agente de codificação de IA (Claude Code, Cursor, OpenCode, Codex etc.); ou mencionar PRD, harness, AGENTS.md, feature_list, vibe coding com specs, ou documentar antes de codar. Não use para escrever ou depurar código, nem quando o usuário já tem PRD e harness prontos.
+description: Gera um PRD (Product Requirements Document) e o pacote completo de documentos Harness (AGENTS.md canônico, docs/feature_list.json, docs/progress.md, docs/session-handoff.md, notas de verificação/bootstrap) a partir da descrição de um projeto de software, seguindo os padrões do curso Learn Harness Engineering. Também gera os arquivos de configuração nativos do agente de codificação escolhido (CLAUDE.md para Claude Code, .cursor/rules/*.mdc para Cursor, suporte direto no OpenCode). Use sempre que o usuário descrever uma ideia de projeto, app, feature ou produto e pedir ajuda para começar, estruturar, documentar ou preparar o repositório para um agente de codificação de IA (Claude Code, Cursor, OpenCode, Codex etc.); ou mencionar PRD, harness, AGENTS.md, feature_list, vibe coding com specs, ou documentar antes de codar. Use também quando o usuário já tiver um PRD pronto e pedir o harness/AGENTS.md a partir dele. Não use para escrever ou depurar código, nem quando o usuário já tem PRD e harness prontos.
 ---
 
 # Harness Engineering — Gerador de PRD + Harness
@@ -15,13 +15,19 @@ Esta skill cobre a parte de **descoberta e documentação** (PRD → Harness). E
 escreve código do projeto em si, não executa scripts, e não substitui um harness-creator
 que rode dentro de um repositório real — ela prepara o terreno para um.
 
-## Fluxo — sempre 3 etapas, nesta ordem
+## Fluxo — 3 etapas, nesta ordem
 
-Nunca pule etapas. Nunca gere o pacote Harness antes do PRD ser aprovado explicitamente.
+No modo padrão (projeto descrito do zero), nunca pule etapas. Nunca gere o pacote
+Harness antes do PRD ser aprovado explicitamente.
 
 1. **Entrevista** — sabatina adaptativa de 5 pilares + bloco fixo de finalização
 2. **PRD** — gerado, apresentado, aguarda aprovação (gate obrigatório)
 3. **Pacote Harness** — só depois do "aprovado"
+
+Se o usuário já tem um PRD pronto, a Etapa 1 é substituída pela leitura do PRD +
+levantamento de lacunas: leia `references/existing-prd.md` e siga aquele fluxo. Os gates
+de aprovação do PRD e da Etapa 3 continuam iguais. Se PRD **e** harness já existem, não
+use esta skill.
 
 ## Etapa 0 — Ambiente de saída
 
@@ -38,7 +44,7 @@ fim da conversa:
   bloco cercado por crases esteja aberto e fechado corretamente antes de terminar a
   resposta — uma tag quebrada derruba a formatação do resto da conversa.
 
-## Etapa 1 — Entrevista de alinhamento
+## Etapa 1 — Entrevista de alinhamento (modo padrão)
 
 - Leia `references/interview-checklist.md` (duas partes: sabatina adaptativa de 5
   pilares primeiro, bloco fixo de finalização depois).
