@@ -7,6 +7,57 @@ Esta skill não executa comandos. Ela entrega dois artefatos:
 - `init.sh` na raiz do projeto — o script executável (não é documento, por isso fica
   fora de `docs/`), pronto para o usuário salvar e rodar.
 
+## Passo 0: criar o projeto (feito pelo usuário, manualmente)
+
+A skill **nunca** executa o comando. Ela apenas registra, com o nome do projeto como
+placeholder (`<nome>`), o comando do stack escolhido. Ordem:
+
+1. Criar o projeto com o comando abaixo.
+2. Copiar `AGENTS.md` e a pasta `docs/` para a raiz do projeto criado. O
+   `create-next-app` recusa pasta com arquivos pré-existentes, por isso a cópia vem
+   **depois** da criação.
+3. Rodar `init.sh`.
+4. Abrir o agente de codificação na pasta do projeto.
+
+### Next.js
+
+```bash
+npx create-next-app@latest <nome> --typescript --eslint --app --src-dir \
+  --import-alias "@/*" --tailwind --no-cache-components --no-agents-md \
+  --no-react-compiler --no-agent-feedback --yes
+```
+
+- `--tailwind` vira `--no-tailwind` se a entrevista escolher outra estilização.
+- `--no-cache-components` sai do comando se a entrevista responder "sim" para Cache
+  Components; nesse caso ligue `cacheComponents: true` e `partialPrefetching: true` no
+  `next.config.ts`.
+- `--yes` reaproveita preferências salvas para o que não foi passado; as flags explícitas
+  vencem. Por isso as opções que mudam o resultado vão todas explícitas.
+- `--no-agents-md` evita o `AGENTS.md`/`CLAUDE.md` gerados pelo create-next-app, que
+  colidiriam com o AGENTS.md do harness.
+- Com Next >= 16.3, o `next dev` injeta um bloco gerenciado no `AGENTS.md`. A F001 deve
+  definir `agentRules: false` no `next.config.ts` — antes de aplicar, confira se a versão
+  instalada suporta a opção (foi adicionada na 16.3).
+- Depois de gerado, o projeto precisa ter um script `lint` funcional. Se a versão do Next
+  não trouxer o script, a F001 inclui adicioná-lo.
+- O test runner não vem no template: Vitest + React Testing Library é critério da F001.
+
+### React (Vite)
+
+```bash
+npm create vite@latest <nome> -- --template react-ts
+cd <nome>
+npm install
+```
+
+O template já traz ESLint. O test runner (Vitest + React Testing Library) não vem: é
+critério da F001.
+
+### Outros stacks
+
+Registre o comando equivalente informado pelo usuário ou peça o comando a ele. Não
+invente flags.
+
 ## O que incluir
 1. Instalação de dependências (comando do gerenciador de pacotes do stack escolhido)
 2. Comando de build (se aplicável)

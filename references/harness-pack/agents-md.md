@@ -37,6 +37,8 @@ design — o usuário quer liberdade para escolher/testar isso por conta própri
 - Antes de marcar `done`, rode `git diff --stat`, compare os arquivos com o
   `acceptance_criteria` da feature e justifique em docs/progress.md qualquer arquivo fora
   do escopo
+- [Se o stack for Next.js: "Antes de trabalhar em Next, leia o guia relevante em
+  `node_modules/next/dist/docs/` — é a doc da versão instalada."]
 - [Se `docs/engineering-rules.md` foi gerado: "Antes de mexer em auth, Server Actions,
   banco ou workflows n8n, leia `docs/engineering-rules.md`." Sem esse arquivo, omitir.]
 - Documente decisões e fatos específicos do projeto em `docs/`, não aqui
