@@ -19,6 +19,22 @@ placeholder (`<nome>`), o comando do stack escolhido. Ordem:
 3. Rodar `init.sh`.
 4. Abrir o agente de codificação na pasta do projeto.
 
+### Se a pasta já contém o harness
+
+Quando o repositório já tem `AGENTS.md` e `docs/` (harness criado antes do app), o
+`create-next-app` recusa a pasta. Crie o projeto numa pasta temporária e mescle, sem
+sobrescrever os arquivos do harness:
+
+```bash
+# rode o comando do stack acima apontando para <nome>-app
+rsync -a --exclude='.git/' <nome>-app/ <nome>/
+rm -rf <nome>-app
+```
+
+Não traga o `.git/` da pasta temporária: o repositório deve continuar sendo o do harness
+(se ele ainda não tiver um, rode `git init` na pasta final). Confira que nenhum arquivo do
+harness foi sobrescrito antes de rodar `init.sh`.
+
 ### Next.js
 
 ```bash

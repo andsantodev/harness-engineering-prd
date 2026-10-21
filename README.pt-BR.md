@@ -113,7 +113,7 @@ O projeto precisa existir antes de você colar qualquer prompt abaixo:
 3. Rode `init.sh`.
 4. Abra o agente de codificação na pasta do projeto.
 
-Veja o item Passo 0 em **O que o Harness inclui** acima. Os comandos exatos de cada stack ficam na seção Passo 0 de `docs/verification-notes.md` (gerado pela skill; fonte: `references/harness-pack/verification-notes.md`) e não são duplicados aqui.
+Veja o item Passo 0 em **O que o Harness inclui** acima. Os comandos exatos de cada stack ficam na seção Passo 0 de `docs/verification-notes.md` (gerado pela skill; fonte: `references/harness-pack/verification-notes.md`) e não são duplicados aqui. Se a pasta já contém o harness, essa seção também cobre o merge via pasta temporária.
 
 ## Prompts de início rápido
 
