@@ -83,7 +83,9 @@ combinado acima, não trocar dependências de produção, não fazer push direto
 conforme o projeto]
 
 ## Ao final de cada sessão
-1. Atualize docs/progress.md com o que foi feito e verificado
+1. Atualize docs/progress.md com o que foi feito e verificado — entrada curta (~10
+   linhas), sem código, tabelas ou logs completos; o detalhe vai para
+   `verification_evidence` e para a mensagem de commit
 2. Atualize docs/feature_list.json
 3. Atualize docs/session-handoff.md com o estado atual e a próxima feature sugerida
 4. Só faça commit se o projeto ficar num estado seguro para retomar depois

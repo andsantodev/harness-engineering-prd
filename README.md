@@ -22,6 +22,7 @@ Three steps, always in this order. No document is generated before the previous 
 - A short **Definition of Done** with automatic checks (typecheck, lint, tests; production build at the end) and judgment calls (no new dependency without approval, no dead code, simplest solution).
 - A **folder structure** heuristic: by responsibility up to ~15 screens, by feature above that.
 - A final **release inspection** feature, always last in `docs/feature_list.json`: production build, no secrets in code or public env vars, `.env.example`, 404 route, basic accessibility, dependency audit, and a security review.
+- A short **progress log**: one entry per session (~10 lines), with detailed evidence in `feature_list.json` and commit messages; older sessions move to `docs/progress-archive.md` after ~300 lines.
 - **Stack rules** loaded only when they match: Next.js, React + Vite, Supabase Auth and n8n. Details go to `docs/engineering-rules.md`; the generated `AGENTS.md` only points to it.
 - A **manual setup step** (Passo 0) documented for Next.js and Vite, including the current `create-next-app` flags (npm pinned with `--use-npm`) and the Vitest + React Testing Library setup that F001 owns.
 
