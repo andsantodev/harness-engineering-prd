@@ -23,7 +23,7 @@ Sempre 3 etapas, nesta ordem. Nenhum documento é gerado antes do gate anterior 
 - Uma **estrutura de pastas** heurística: por responsabilidade até ~15 telas, por feature acima disso.
 - Uma feature final de **inspeção de release**, sempre a última da `docs/feature_list.json`: build de produção, nenhum segredo no código ou em variável pública, `.env.example`, rota 404, acessibilidade básica, auditoria de dependências e revisão de segurança.
 - **Regras por stack** lidas só quando baterem: Next.js, React + Vite, Supabase Auth e n8n. O detalhe vai para `docs/engineering-rules.md`; o `AGENTS.md` gerado apenas aponta para ele.
-- Um **Passo 0 de criação do projeto** (manual) documentado para Next.js e Vite, com as flags atuais do `create-next-app` e o Vitest + React Testing Library que a F001 configura.
+- Um **Passo 0 de criação do projeto** (manual) documentado para Next.js e Vite, com as flags atuais do `create-next-app` (npm fixado com `--use-npm`) e o Vitest + React Testing Library que a F001 configura.
 
 Esta skill cobre **apenas descoberta e documentação** — ela não escreve código do projeto nem executa scripts. Ela prepara o terreno para um agente de codificação (ou um fluxo harness-creator) assumir a partir daí.
 

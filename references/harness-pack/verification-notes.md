@@ -24,15 +24,17 @@ placeholder (`<nome>`), o comando do stack escolhido. Ordem:
 ```bash
 npx create-next-app@latest <nome> --typescript --eslint --app --src-dir \
   --import-alias "@/*" --tailwind --no-cache-components --no-agents-md \
-  --no-react-compiler --no-agent-feedback --yes
+  --no-react-compiler --no-agent-feedback --use-npm --yes
 ```
 
 - `--tailwind` vira `--no-tailwind` se a entrevista escolher outra estilização.
 - `--no-cache-components` sai do comando se a entrevista responder "sim" para Cache
   Components; nesse caso ligue `cacheComponents: true` e `partialPrefetching: true` no
   `next.config.ts`.
-- `--yes` reaproveita preferências salvas para o que não foi passado; as flags explícitas
-  vencem. Por isso as opções que mudam o resultado vão todas explícitas.
+- `--use-npm` fixa o npm como gerenciador de pacotes e vence a preferência salva. Sem
+  ele, `--yes` reaproveita preferências salvas para o que não foi passado — inclusive o
+  gerenciador. Se você escolher pnpm/yarn/bun, troque por `--use-pnpm`, `--use-yarn` ou
+  `--use-bun` e mantenha o mesmo gerenciador em todos os comandos.
 - `--no-agents-md` evita o `AGENTS.md`/`CLAUDE.md` gerados pelo create-next-app, que
   colidiriam com o AGENTS.md do harness.
 - Com Next >= 16.3, o `next dev` injeta um bloco gerenciado no `AGENTS.md`. A F001 deve
@@ -51,7 +53,8 @@ npm install
 ```
 
 O template já traz ESLint. O test runner (Vitest + React Testing Library) não vem: é
-critério da F001.
+critério da F001. O npm é o padrão; se o projeto usar pnpm/yarn/bun, troque os comandos
+equivalentes e não misture gerenciadores.
 
 ### Outros stacks
 
@@ -59,7 +62,7 @@ Registre o comando equivalente informado pelo usuário ou peça o comando a ele.
 invente flags.
 
 ## O que incluir
-1. Instalação de dependências (comando do gerenciador de pacotes do stack escolhido)
+1. Instalação de dependências (npm por padrão; use o mesmo gerenciador do projeto)
 2. Comando de build (se aplicável)
 3. Comando de testes
 4. Comando de lint/typecheck

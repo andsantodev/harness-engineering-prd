@@ -10,7 +10,7 @@
 - **`feature_list.json` rules:** async features carry explicit loading/success/error/empty criteria; criteria must be specific and only cite paths that follow the folder convention; a final **release inspection** feature is always last and depends on all others (full and reduced versions).
 - **Conditional stack rules** in `references/harness-pack/stack-rules/` (Next.js, React + Vite, Supabase Auth, n8n), generated into `docs/engineering-rules.md` only when the stack matches. Supabase guidance follows the current docs: `getClaims()` is preferred over `getUser()` on the server, and `getSession()` is treated as unverified data.
 - **Interview:** recommended answers only for technical-choice questions; product and business questions stay open. New fixed-block questions for styling, Next.js Cache Components, authentication (only when the project has it) and `code-review-lite`.
-- **Passo 0** documents manual project creation for Next.js and Vite, with `create-next-app` 16.4 flags (`--no-agents-md`, `--no-cache-components`, `--yes`), the `agentRules: false` adjustment for Next >= 16.3, and the `node_modules/next/dist/docs/` pointer.
+- **Passo 0** documents manual project creation for Next.js and Vite, with `create-next-app` 16.4 flags (`--no-agents-md`, `--no-cache-components`, `--use-npm`, `--yes`), the `agentRules: false` adjustment for Next >= 16.3, and the `node_modules/next/dist/docs/` pointer. npm is the default; pnpm/yarn/bun remain supported when chosen consistently.
 - **Test anti-patterns** added to `engineering-rules.md`: tests that can't fail and tests coupled to implementation.
 - Removed the Gemini Gem reference; README no longer implies Gemini compatibility. README EN/PT updated for the new layout, entry modes and stack rules.
 

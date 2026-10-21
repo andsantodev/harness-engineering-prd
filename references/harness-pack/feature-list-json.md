@@ -44,7 +44,8 @@ geração inicial.
   isso é gerado uma única vez, no início do projeto.
 - `verification_command` precisa ser algo que termina sozinho e diz passou/falhou (ex.:
   build, teste automatizado, query, lint). Nunca inclua ali um comando que sobe servidor
-  e fica pendurado esperando alguém olhar (ex.: `npm run dev`, watch mode) — isso trava
+  e fica pendurado esperando alguém olhar (ex.: `npm run dev` ou equivalente, watch
+  mode) — isso trava
   qualquer execução sem supervisão humana constante. Se a feature tiver critério visual
   (comum em telas), ele continua fazendo parte do `acceptance_criteria` e é conferido
   manualmente — mas como evidência registrada à parte (ex.: "conferido no navegador:
@@ -107,12 +108,14 @@ então a regra de "transversais cedo" não se aplica a ela e continua valendo pa
 demais.
 
 **Versão completa (projetos médios/grandes)** — `acceptance_criteria`:
-- Build de produção passa (`npm run build` ou equivalente do stack)
+- Build de produção passa (`npm run build` ou o comando equivalente do gerenciador do
+  projeto)
 - Nenhuma chave/segredo no código nem em variável pública (`NEXT_PUBLIC_*`, `VITE_*`)
 - `.env.example` presente, sem valores reais
 - Rota 404 responde corretamente
 - Acessibilidade básica: `label` em formulários, texto em botões, `alt` em imagens
-- `npm audit` sem vulnerabilidades relevantes (ou risco aceito e registrado)
+- `npm audit` (ou o audit do gerenciador do projeto) sem vulnerabilidades relevantes (ou
+  risco aceito e registrado)
 - Revisão de segurança final antes do push
 - [Se a entrevista disser que o projeto usa a skill `code-review-lite`: "Revisão final
   com a skill `code-review-lite` antes do push". Se não: "Revisão de segurança final

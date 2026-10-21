@@ -42,6 +42,8 @@ design — o usuário quer liberdade para escolher/testar isso por conta própri
   `node_modules/next/dist/docs/` — é a doc da versão instalada."]
 - [Se `docs/engineering-rules.md` foi gerado: "Antes de mexer em auth, Server Actions,
   banco ou workflows n8n, leia `docs/engineering-rules.md`." Sem esse arquivo, omitir.]
+- Use o gerenciador de pacotes do lockfile do projeto (npm, pnpm, yarn ou bun) em todos
+  os comandos; nunca misture gerenciadores
 - Documente decisões e fatos específicos do projeto em `docs/`, não aqui
 
 ## Estrutura de pastas
