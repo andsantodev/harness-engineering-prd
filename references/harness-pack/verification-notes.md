@@ -2,10 +2,10 @@
 
 Esta skill não executa comandos. Ela entrega dois artefatos:
 
-- `docs/verification-notes.md` — as notas: Passo 0 de criação do projeto, comandos e o
-  que conferir para a verificação falhar de verdade.
-- `init.sh` na raiz do projeto — o script executável (não é documento, por isso fica
-  fora de `docs/`), pronto para o usuário salvar e rodar.
+- `docs/verification-notes.md` — as notas: Passo 0 de criação do projeto, comandos de
+  bootstrap e o que conferir para a verificação falhar de verdade.
+- `init.sh` na raiz do projeto — o health check de **bootstrap** (não é documento, por
+  isso fica fora de `docs/`), pronto para o usuário salvar e rodar.
 
 ## Passo 0: criar o projeto (feito pelo usuário, manualmente)
 
@@ -13,27 +13,12 @@ A skill **nunca** executa o comando. Ela apenas registra, com o nome do projeto 
 placeholder (`<nome>`), o comando do stack escolhido. Ordem:
 
 1. Criar o projeto com o comando abaixo.
-2. Copiar `AGENTS.md` e a pasta `docs/` para a raiz do projeto criado. O
+2. Adicionar os scripts de bootstrap ao `package.json` (seção seguinte).
+3. Copiar `AGENTS.md` e a pasta `docs/` para a raiz do projeto criado. O
    `create-next-app` recusa pasta com arquivos pré-existentes, por isso a cópia vem
    **depois** da criação.
-3. Rodar `init.sh`.
-4. Abrir o agente de codificação na pasta do projeto.
-
-### Se a pasta já contém o harness
-
-Quando o repositório já tem `AGENTS.md` e `docs/` (harness criado antes do app), o
-`create-next-app` recusa a pasta. Crie o projeto numa pasta temporária e mescle, sem
-sobrescrever os arquivos do harness:
-
-```bash
-# rode o comando do stack acima apontando para <nome>-app
-rsync -a --exclude='.git/' <nome>-app/ <nome>/
-rm -rf <nome>-app
-```
-
-Não traga o `.git/` da pasta temporária: o repositório deve continuar sendo o do harness
-(se ele ainda não tiver um, rode `git init` na pasta final). Confira que nenhum arquivo do
-harness foi sobrescrito antes de rodar `init.sh`.
+4. Rodar `init.sh`.
+5. Abrir o agente de codificação na pasta do projeto.
 
 ### Next.js
 
@@ -56,9 +41,48 @@ npx create-next-app@latest <nome> --typescript --eslint --app --src-dir \
 - Com Next >= 16.3, o `next dev` injeta um bloco gerenciado no `AGENTS.md`. A F001 deve
   definir `agentRules: false` no `next.config.ts` — antes de aplicar, confira se a versão
   instalada suporta a opção (foi adicionada na 16.3).
-- Depois de gerado, o projeto precisa ter um script `lint` funcional. Se a versão do Next
-  não trouxer o script, a F001 inclui adicioná-lo.
+- O script `lint` precisa existir antes do `init.sh`; se o template não trouxer, adicione-o
+  no Passo 0 junto com o `type-check`. A F001 pode refiná-lo (regras de `any`,
+  `no-console`, etc.).
 - O test runner não vem no template: Vitest + React Testing Library é critério da F001.
+
+#### Scripts de bootstrap do Next
+
+O template do Next 16 cria `dev`, `build`, `start` e `lint` — **não** cria `type-check`,
+`test:unit` nem `test:e2e`. Adicione ao `package.json` (sem instalar dependência nova):
+
+```json
+{
+  "scripts": {
+    "type-check": "next typegen && tsc --noEmit",
+    "lint": "eslint . --max-warnings 0"
+  }
+}
+```
+
+- O `next typegen` (Next >= 15.5) gera os tipos de rota (`LayoutProps`, `PageProps`) em
+  `.next/types`. Sem ele, `tsc --noEmit` falha num projeto limpo com
+  `Cannot find name 'LayoutProps'`.
+- Se o template já tiver um `lint` funcional, mantenha-o e apenas acrescente
+  `--max-warnings 0`; não troque o comando por outro linter.
+- Os scripts de teste continuam sendo entregáveis da F001.
+
+### Se a pasta já contém o harness
+
+Quando o repositório já tem `AGENTS.md` e `docs/` (harness criado antes do app), o
+`create-next-app` recusa a pasta. Crie o projeto numa pasta temporária e mescle, sem
+sobrescrever os arquivos do harness:
+
+```bash
+# rode o comando do stack acima apontando para <nome>-app
+rsync -a --exclude='.git/' <nome>-app/ <nome>/
+rm -rf <nome>-app
+```
+
+Não traga o `.git/` da pasta temporária: o repositório deve continuar sendo o do harness
+(se ele ainda não tiver um, rode `git init` na pasta final). Depois do merge, adicione os
+scripts de bootstrap ao `package.json` e confira que nenhum arquivo do harness foi
+sobrescrito antes de rodar `init.sh`.
 
 ### React (Vite)
 
@@ -77,13 +101,24 @@ equivalentes e não misture gerenciadores.
 Registre o comando equivalente informado pelo usuário ou peça o comando a ele. Não
 invente flags.
 
-## O que incluir
+## Bootstrap x Definition of Done
+
+- **Bootstrap (`init.sh`)** — prova que o projeto instala, linta, tipa e builda logo
+  depois de criado. É um health check de ambiente, não uma feature pronta.
+- **Definition of Done** — é o gate de cada feature: o `verification_command` da feature
+  roda typecheck, lint e testes e precisa terminar sozinho.
+- **Testes** — só entram no bootstrap depois que a F001 instalar e configurar o runner.
+  Antes disso, `init.sh` pula a etapa com uma mensagem explícita; não invente
+  `test:unit`/`test:e2e`.
+- **Build** — no bootstrap é um smoke build. Na Definition of Done, o build de produção
+  entra no final do projeto (feature de inspeção de release).
+
+## O que incluir no init.sh
 1. Instalação de dependências (npm por padrão; use o mesmo gerenciador do projeto)
-2. Comando de build (se aplicável)
-3. Comando de testes
-4. Comando de lint/typecheck
-5. Um "health check" simples — algo rápido que confirma que o ambiente está OK antes de
-   começar a trabalhar
+2. Lint (com `--max-warnings 0`)
+3. Typecheck (`next typegen && tsc --noEmit` no Next)
+4. Build de smoke
+5. Testes **somente** se o runner já existir; caso contrário, pule com aviso (F001)
 
 ## Faça a verificação falhar de verdade
 
@@ -101,21 +136,34 @@ Comando que sempre passa não verifica nada. Antes de confiar no `verification_c
 
 ## Formato de entrega
 
-Entregue como um bloco de código bash, pronto para colar num arquivo `init.sh`:
+Entregue o `init.sh` com o gerenciador escolhido (o exemplo usa npm; troque por
+`pnpm`/`yarn`/`bun` se for o caso):
 
 ```bash
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
+cd "$(dirname "$0")"
 
 echo "Instalando dependências..."
-[comando real]
+npm install
 
-echo "Rodando verificação..."
-[comando real]
+echo "Lint..."
+npm run lint
 
-echo "Ambiente OK."
+echo "Typecheck..."
+npm run type-check
+
+echo "Build de smoke..."
+npm run build
+
+echo "Test runner: será criado na F001 — pulando."
+echo "Bootstrap OK."
 ```
 
-Se a entrevista não trouxer informação suficiente sobre os comandos reais do stack, use
-os comandos padrão mais comuns para aquele stack e marque com um comentário
-`# confirmar` no lugar do comando.
+- `install` sem `--frozen-lockfile` no bootstrap; frozen fica para CI.
+- O `cd "$(dirname "$0")"` permite rodar o script da raiz ou de qualquer subpasta,
+  inclusive `docs/`.
+- Se o projeto já tiver test runner, troque a linha de skip por `npm test`.
+- Se a entrevista não trouxer informação suficiente sobre os comandos reais do stack, use
+  os comandos padrão mais comuns para aquele stack e marque com um comentário
+  `# confirmar` no lugar do comando.

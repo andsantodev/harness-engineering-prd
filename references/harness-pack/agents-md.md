@@ -24,6 +24,8 @@ design — o usuário quer liberdade para escolher/testar isso por conta própri
 2. Leia docs/feature_list.json — o que está feito, o que falta
 3. Rode os comandos de verificação abaixo para confirmar que o projeto está num estado
    saudável
+   - Na primeira sessão, antes da F001, rode só install/lint/type-check/build; os scripts
+     de teste só passam a existir com a F001
 
 ## Como trabalhar aqui
 - Escolha exatamente UMA feature não concluída de docs/feature_list.json por vez (WIP=1)
@@ -57,8 +59,8 @@ template. Para outro stack, adapte ao que a ferramenta exige.]
 
 ## Definition of Done
 **Automática** (é o que o `verification_command` roda — precisa terminar sozinho e
-retornar falha quando algo quebra): typecheck, lint e testes. Build entra ao final do
-projeto, não em toda feature.
+retornar falha quando algo quebra): typecheck, lint e testes. Testes só a partir da F001,
+quando o runner existir. Build entra ao final do projeto, não em toda feature.
 
 **Julgamento** (confira antes de marcar done):
 - Nenhuma dependência nova sem aprovação do usuário

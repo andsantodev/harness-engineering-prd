@@ -5,6 +5,9 @@ Leia só quando o stack do projeto for Next.js. O resultado vai para
 
 - Antes de escrever código Next, leia o guia relevante em
   `node_modules/next/dist/docs/` — a doc instalada corresponde à versão do projeto.
+- `tsc --noEmit` sozinho não valida os tipos de rota do Next 16: rode `next typegen`
+  antes. O script `type-check` deve ser `next typegen && tsc --noEmit`, senão um projeto
+  limpo falha com `Cannot find name 'LayoutProps'`/`PageProps`.
 - Módulos de serviço/banco usam `import 'server-only'` para não vazarem para o client.
 - Segredo nunca em `NEXT_PUBLIC_*`: tudo com esse prefixo vai para o browser.
 - `'use client'` só onde há interatividade (estado, evento, efeito). O resto fica como

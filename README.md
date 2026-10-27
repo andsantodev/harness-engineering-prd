@@ -24,7 +24,7 @@ Three steps, always in this order. No document is generated before the previous 
 - A final **release inspection** feature, always last in `docs/feature_list.json`: production build, no secrets in code or public env vars, `.env.example`, 404 route, basic accessibility, dependency audit, and a security review.
 - A short **progress log**: one entry per session (~10 lines), with detailed evidence in `feature_list.json` and commit messages; older sessions move to `docs/progress-archive.md` after ~300 lines.
 - **Stack rules** loaded only when they match: Next.js, React + Vite, Supabase Auth and n8n. Details go to `docs/engineering-rules.md`; the generated `AGENTS.md` only points to it.
-- A **manual setup step** (Passo 0) documented for Next.js and Vite, including the current `create-next-app` flags (npm pinned with `--use-npm`) and the Vitest + React Testing Library setup that F001 owns.
+- A **manual setup step** (Passo 0) documented for Next.js and Vite, including the current `create-next-app` flags (npm pinned with `--use-npm`) and the Vitest + React Testing Library setup that F001 owns. The generated `init.sh` is a bootstrap health check (install, lint, typecheck, smoke build) and skips tests until F001 creates the runner.
 
 This skill covers **discovery and documentation only** — it doesn't write application code or run scripts. It prepares the ground for a coding agent (or a harness-creator flow) to take over.
 

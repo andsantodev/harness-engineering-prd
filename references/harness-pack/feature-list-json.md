@@ -81,6 +81,10 @@ navegável (tela em branco no final, mesmo com tudo "done"). Para evitar isso:
   por feature), a rota 404 (quando o stack tiver rotas) e, se o projeto ainda não tiver
   test runner, instala e configura Vitest + React Testing Library com um teste que roda
   de verdade. Não deixe esses itens para uma feature posterior.
+- Até a F001, os scripts `test:unit`/`test:e2e` (ou equivalentes) **não existem**. O
+  `init.sh` de bootstrap roda só install/lint/type-check/build e pula os testes com aviso.
+  Critério de aceite da F001: em projeto limpo, `init.sh` roda da raiz e de `docs/` sem
+  erro de script ausente nem `Cannot find name 'LayoutProps'`.
 - Se o projeto tiver uma única tela/rota (ex.: landing page, CLI, script), F001 pode ser
   a primeira feature de produto normalmente — o esqueleto só se justifica quando há mais
   de uma tela/rota para conectar. Os itens de estrutura, 404 e test runner continuam
