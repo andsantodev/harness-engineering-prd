@@ -109,7 +109,7 @@ cp -r harness-engineering-prd/SKILL.md harness-engineering-prd/references \
 O projeto precisa existir antes de você colar qualquer prompt abaixo:
 
 1. Crie o projeto com o comando registrado na nota de verificação do seu stack (Passo 0) — a skill documenta, você executa.
-2. Copie `AGENTS.md` e `docs/` para a raiz do projeto criado (o `create-next-app` recusa pasta com arquivos pré-existentes, então copie depois da criação).
+2. Copie `AGENTS.md`, `init.sh` e `docs/` para a raiz do projeto criado (o `create-next-app` recusa pasta com arquivos pré-existentes, então copie depois da criação).
 3. Rode `init.sh`.
 4. Abra o agente de codificação na pasta do projeto.
 

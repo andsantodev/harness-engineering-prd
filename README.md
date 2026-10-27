@@ -109,7 +109,7 @@ cp -r harness-engineering-prd/SKILL.md harness-engineering-prd/references \
 The project must exist before you paste any prompt below:
 
 1. Create the project with the command registered in the verification notes for your stack (Passo 0) — the skill documents it, you run it.
-2. Copy `AGENTS.md` and `docs/` into the new project root (`create-next-app` refuses a folder with pre-existing files, so copy after creation).
+2. Copy `AGENTS.md`, `init.sh` and `docs/` into the new project root (`create-next-app` refuses a folder with pre-existing files, so copy after creation).
 3. Run `init.sh`.
 4. Open your coding agent in the project folder.
 

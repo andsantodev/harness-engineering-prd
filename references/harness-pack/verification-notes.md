@@ -14,7 +14,7 @@ placeholder (`<nome>`), o comando do stack escolhido. Ordem:
 
 1. Criar o projeto com o comando abaixo.
 2. Adicionar os scripts de bootstrap ao `package.json` (seção seguinte).
-3. Copiar `AGENTS.md` e a pasta `docs/` para a raiz do projeto criado. O
+3. Copiar `AGENTS.md`, `init.sh` e a pasta `docs/` para a raiz do projeto criado. O
    `create-next-app` recusa pasta com arquivos pré-existentes, por isso a cópia vem
    **depois** da criação.
 4. Rodar `init.sh`.
